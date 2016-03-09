@@ -7,7 +7,14 @@ import java.util.Map;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 import com.stone.ordering.app.MyApplication;
+import com.stone.ordering.model.DiningTable;
+import com.stone.ordering.model.DinnerOrder;
+import com.stone.ordering.model.Dish;
+import com.stone.ordering.model.DishType;
+import com.stone.ordering.model.OrderDetail;
+import com.stone.ordering.model.User;
 import com.stone.ordering.util.Constants;
 
 import android.content.Context;
@@ -28,7 +35,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private static DatabaseHelper instance;
 
 	private Map<String, Dao> daos = new HashMap<String, Dao>();
-
+	
+	private static final int DB_VERSION = 1;
+	
 	public DatabaseHelper(Context context) throws NameNotFoundException {
 		super(context, Constants.COLLECT_DB_PATH, null, context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);
 	}
@@ -45,35 +54,31 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
-//		try {
-//			TableUtils.createTable(connectionSource, CardInfoModel.class);
-//			TableUtils.createTable(connectionSource, FaceComparisionModel.class);
-//			TableUtils.createTable(connectionSource, FpComparisionModel.class);
-//			TableUtils.createTable(connectionSource, FpFaceCardComparisionModel.class);
-//			TableUtils.createTable(connectionSource, SingleComparisionModel.class);
-//			TableUtils.createTable(connectionSource, VehicleInfoModel.class);
-//			TableUtils.createTable(connectionSource, VehiclePassengerInfoModel.class);
-//			TableUtils.createTable(connectionSource, TaskInfoModel.class);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			TableUtils.createTable(connectionSource, DiningTable.class);
+			TableUtils.createTable(connectionSource, DinnerOrder.class);
+			TableUtils.createTable(connectionSource, Dish.class);
+			TableUtils.createTable(connectionSource, DishType.class);
+			TableUtils.createTable(connectionSource, OrderDetail.class);
+			TableUtils.createTable(connectionSource, User.class);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
-//		try {
-//			TableUtils.dropTable(connectionSource, CardInfoModel.class, true);
-//			TableUtils.dropTable(connectionSource, FaceComparisionModel.class, true);
-//			TableUtils.dropTable(connectionSource, FpComparisionModel.class, true);
-//			TableUtils.dropTable(connectionSource, FpFaceCardComparisionModel.class, true);
-//			TableUtils.dropTable(connectionSource, SingleComparisionModel.class, true);
-//			TableUtils.dropTable(connectionSource, VehicleInfoModel.class, true);
-//			TableUtils.dropTable(connectionSource, VehiclePassengerInfoModel.class, true);
-//			TableUtils.dropTable(connectionSource, TaskInfoModel.class, true);
-//			onCreate(database, connectionSource);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			TableUtils.createTable(connectionSource, DiningTable.class);
+			TableUtils.createTable(connectionSource, DinnerOrder.class);
+			TableUtils.createTable(connectionSource, Dish.class);
+			TableUtils.createTable(connectionSource, DishType.class);
+			TableUtils.createTable(connectionSource, OrderDetail.class);
+			TableUtils.createTable(connectionSource, User.class);
+			onCreate(database, connectionSource);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static synchronized DatabaseHelper getHelper() {

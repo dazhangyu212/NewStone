@@ -77,10 +77,10 @@ public class MyApplication extends Application {
 		if (!dbs.exists()) {
 			dbs.mkdirs();
 		}
-//		File temp = new File(Constant.TEMP_PATH);
-//		if (!temp.exists()) {
-//			temp.mkdirs();
-//		}
+		File temp = new File(Constants.LOG_PATH );
+		if (!temp.exists()) {
+			temp.mkdirs();
+		}
 
 	}
 
@@ -88,7 +88,7 @@ public class MyApplication extends Application {
 		// TODO Auto-generated method stub
 		File file = new File(Constants.COLLECT_DB_PATH);
 		if (!file.exists()) {
-			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) == true) {
+//			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 				File parent = file.getParentFile();
 				parent.mkdirs();
 				SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(Constants.COLLECT_DB_PATH, null);
@@ -96,7 +96,7 @@ public class MyApplication extends Application {
 				orm = DatabaseHelper.getHelper();
 				orm.onCreate(db);
 				db.close();
-			}
+//			}
 		} else {
 //			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) == true) {
 //				SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(Constant.COLLECT_DB_PATH, null);

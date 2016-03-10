@@ -11,9 +11,6 @@ import com.stone.ordering.data.DatabaseHelper;
 public class BaseDao {
 	
 	public static final int COLLECT_DATA_DB = 0;
-	public static final int SYSTEM_DB = 1;
-	public static final int FACE_DB = 2;
-	public static final int FINGER_DB = 3;
 
 	public OrmLiteSqliteOpenHelper getDatabaseHelper(int type) {
 		OrmLiteSqliteOpenHelper databaseHelper = null;
@@ -40,7 +37,7 @@ public class BaseDao {
 		return null;
 	}
 	
-	public QueryBuilder getQueryBuilder(){
-		return null;
-	}
+//	public QueryBuilder getQueryBuilder(){
+//		return null;
+//	}
 }

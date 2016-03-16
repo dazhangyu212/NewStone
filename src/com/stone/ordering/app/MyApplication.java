@@ -13,7 +13,6 @@ import com.stone.ordering.util.Constants;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.os.Environment;
 
 public class MyApplication extends Application {
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <color name="col_white">#FFFFFF</color>
+    <color name="col_black">#000000</color>
+    <color name="col_gay">#000000BA</color>
+    <color name="col_transparent">#00000000</color>
+    <color name="col_blue">#0288D1</color>
+    <color name="col_silver">#7B7B7B</color>
+    <color name="col_orange">#FF9D2F</color>
+    <color name="col_light_blue">#03A9F4</color>
+    <color name="col_gray">#CCCCCC</color>
+    <color name="col_dark_gray">#383838</color>
+    <color name="col_deep_gray">#999999</color>
+    <color name="col_light_gray">#DBDBDB</color>
+    <color name="col_dark_black">#DD000000</color>
+    <color name="col_light_black">#89000000</color>
+    <color name="col_dialog_blue">#0288d1</color>
+    <color name="col_red">#FF0000</color>
+    <color name="col_light_black2">#111111</color>
+    <color name="col_custom_text">#666666</color>
+    <color name="col_tab_title_people_text">#0D5993</color>
+    <color name="col_tab_title_goods_text">#B10505</color>
+    <color name="col_EEEEEE">#EEEEEE</color>
+    <color name="col_010101">#010101</color>
+    <color name="col_read_id_card">#2E93C1</color>
+    <color name="col_collect_fingerprint">#7D367F</color>
+    <color name="col_4e4e4e">#4E4E4E</color>
+    <color name="col_2D70B2">#2D70B2</color>
+    <color name="col_dialog_gray">#d1d1d1</color>
+    <color name="col_title_black">#212733</color>
+    <color name="col_divider_gray">#a7a7a7</color>
+    <color name="col_deep_blue">#212733</color> 
+    <color name="col_selected_gray">#F2F2F2</color>
+    <color name="col_green">#00B39B</color>
+
+</resources>

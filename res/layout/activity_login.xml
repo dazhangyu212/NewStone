@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/shrimp_bg"
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_chinese"
+        android:textSize="@dimen/n30sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/col_red"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/n150dp"
+        />
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="@dimen/n254dp"
+        android:layout_height="@dimen/n40dp"
+        android:layout_alignLeft="@+id/et_username"
+        android:layout_below="@+id/et_username"
+        android:layout_marginTop="@dimen/n24dp"
+        android:background="@drawable/bg_edittext"
+        android:drawableLeft="@drawable/lock"
+        android:drawablePadding="@dimen/n10dp"
+        android:singleLine="true"
+        android:password="true"
+        android:ems="10" />
+
+   <!--  <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/logo" /> -->
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="@dimen/n254dp"
+        android:layout_height="@dimen/n40dp"
+        android:layout_alignLeft="@+id/et_password"
+        android:layout_below="@+id/et_password"
+        android:background="@drawable/btn_login_selector"
+        android:layout_marginTop="@dimen/n24dp"
+        android:text="@string/str_login"
+        android:textColor="@color/col_white"
+        android:textSize="@dimen/n18sp" />
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="@dimen/n254dp"
+        android:layout_height="@dimen/n40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/n53dp"
+        android:layout_marginTop="@dimen/n254dp"
+        android:background="@drawable/bg_edittext"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="@dimen/n10dp"
+        android:singleLine="true"
+        android:ems="10">
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

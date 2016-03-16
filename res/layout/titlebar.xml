@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/n56dp"
+    android:background="@drawable/img_menu_bg"
+     >
+    <ImageButton
+        android:id="@+id/ib_back"
+        android:layout_width="@dimen/n56dp"
+        android:layout_height="@dimen/n56dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/button_image_shape_bc"
+        android:src="@drawable/btn_back_mini" />
+
+    <TextView
+        android:id="@+id/tv_segmentation_1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/n24dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/n2dp"
+        android:layout_toEndOf="@id/ib_back"
+        android:layout_toRightOf="@id/ib_back"
+        android:textColor="@color/col_white"
+        android:textSize="@dimen/n20sp" />
+    
+    <ImageButton
+        android:id="@+id/ib_delete"
+        android:layout_width="@dimen/n56dp"
+        android:layout_height="@dimen/n56dp"
+        android:layout_toLeftOf="@+id/ib_comfirm"
+        android:layout_centerVertical="true"
+        android:background="@drawable/button_image_shape_bc"
+        android:src="@drawable/btn_delete" />
+
+    <ImageButton
+        android:id="@+id/ib_comfirm"
+        android:layout_width="@dimen/n56dp"
+        android:layout_height="@dimen/n56dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/button_image_shape_bc"
+        android:src="@drawable/btn_finish" />
+
+</RelativeLayout>

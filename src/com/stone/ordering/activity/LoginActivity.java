@@ -32,6 +32,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 		case R.id.btn_login:
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
+			finish();
 			break;
 		default:
 			break;

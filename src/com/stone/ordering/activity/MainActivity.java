@@ -1,10 +1,15 @@
 package com.stone.ordering.activity;
 
 import com.stone.ordering.R;
+import com.stone.ordering.adapter.OperationsAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.Toast;
 
 public class MainActivity extends BaseActivity {
@@ -14,7 +19,55 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		initView();
 	}
+	
+	private void initView() {
+		
+		GridView gvOperations = (GridView) findViewById(R.id.gv_operators);
+		int[] operations = {R.drawable.greet,R.drawable.merge,
+				R.drawable.move,R.drawable.inspect,R.drawable.ordering,
+				R.drawable.update,R.drawable.setting,R.drawable.logout};
+		OperationsAdapter adapter = new OperationsAdapter(this, operations);
+		gvOperations.setAdapter(adapter);
+	}
+
+	OnItemClickListener itemListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			Intent intent;
+			switch (position) {
+			case 0:
+				
+				break;
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				intent = new Intent(MainActivity.this, ChooseDishsActivity.class);
+				startActivity(intent);
+				break;
+			case 5:
+				
+				break;
+			case 6:
+				
+				break;
+			case 7:
+				
+				break;
+			default:
+				break;
+			}
+		}
+	};
 	
 	@Override  
     public boolean onKeyDown(int keyCode, KeyEvent event) {  

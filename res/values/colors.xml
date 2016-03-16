@@ -33,5 +33,6 @@
     <color name="col_deep_blue">#212733</color> 
     <color name="col_selected_gray">#F2F2F2</color>
     <color name="col_green">#00B39B</color>
+    <color name="col_trans_gray">#88999999</color>
 
 </resources>

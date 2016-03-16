@@ -8,11 +8,23 @@
 	    android:id="@+id/include_title" 
 	    layout="@layout/titlebar"
 	    />
-    <TextView
+    <!-- <TextView
         android:layout_below="@id/include_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-    
-
+        android:text="@string/hello_world" /> -->
+    <GridView 
+        android:id="@+id/gv_operators"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4"
+        android:padding="@dimen/n20dp"
+        android:layout_below="@id/include_title"
+        />
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="@dimen/n300dp"
+	    android:background="@color/col_trans_gray"
+		android:layout_below="@id/gv_operators"
+	    ></RelativeLayout>
 </RelativeLayout>

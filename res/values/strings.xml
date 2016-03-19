@@ -5,5 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="app_chinese">餐缘系统</string>
     <string name="str_login">登录</string>
+    <string name="str_select_table">选桌</string>
+    <string name="str_select_dishs">点菜</string>
 
 </resources>

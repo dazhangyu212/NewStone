@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity {
 				R.drawable.update,R.drawable.setting,R.drawable.logout};
 		OperationsAdapter adapter = new OperationsAdapter(this, operations);
 		gvOperations.setAdapter(adapter);
+		gvOperations.setOnItemClickListener(itemListener);
 	}
 
 	OnItemClickListener itemListener = new OnItemClickListener() {

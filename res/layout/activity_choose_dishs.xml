@@ -3,8 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:background="@drawable/shrimpcup_bg">
-    <include 
+    <include
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
         layout = "@layout/titlebar"
         />
-
+    <LinearLayout 
+        android:id="@+id/llt_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/title_bar"
+        android:layout_marginTop="@dimen/n10dp"
+        >
+		<Button 
+		    android:id="@+id/btn_select_table"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:text="@string/str_select_table"
+		    android:textSize="@dimen/n22sp"
+		    android:textColor="@color/col_black"
+		    android:paddingBottom="@dimen/n10dp"
+		    android:paddingTop="@dimen/n10dp"
+		    android:background="@drawable/btn_image_shape"
+		    android:layout_marginLeft="@dimen/n10dp"
+		    android:layout_marginRight="@dimen/n10dp"
+		    style="?android:attr/buttonBarButtonStyle"
+		    />
+		<Button 
+		    android:id="@+id/btn_select_dishes"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:text="@string/str_select_dishs"
+		    android:textSize="@dimen/n22sp"
+		    android:textColor="@color/col_black"
+		    android:paddingTop="@dimen/n10dp"
+		    android:paddingBottom="@dimen/n10dp"
+		    android:background="@drawable/btn_image_shape"
+		    android:layout_marginLeft="@dimen/n10dp"
+		    android:layout_marginRight="@dimen/n10dp"
+		    style="?android:attr/buttonBarButtonStyle"
+		    />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/flt_status_tables"
+        android:layout_below="@id/llt_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+        
 </RelativeLayout>

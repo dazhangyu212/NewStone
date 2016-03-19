@@ -31,7 +31,9 @@
         android:layout_toLeftOf="@+id/ib_comfirm"
         android:layout_centerVertical="true"
         android:background="@drawable/button_image_shape_bc"
-        android:src="@drawable/btn_delete" />
+        android:src="@drawable/btn_delete" 
+        android:visibility="gone"
+        />
 
     <ImageButton
         android:id="@+id/ib_comfirm"

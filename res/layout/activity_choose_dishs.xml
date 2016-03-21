@@ -49,7 +49,7 @@
 		    />
     </LinearLayout>
     <FrameLayout
-        android:id="@+id/flt_status_tables"
+        android:id="@+id/flt_fragment"
         android:layout_below="@id/llt_buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

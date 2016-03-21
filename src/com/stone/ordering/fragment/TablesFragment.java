@@ -1,6 +1,12 @@
 package com.stone.ordering.fragment;
 
-import android.support.v4.app.Fragment;
+import com.stone.ordering.R;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * 类名:TablesFragment
@@ -12,7 +18,17 @@ import android.support.v4.app.Fragment;
 public class TablesFragment extends Fragment {
 
 	public TablesFragment() {
-		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_tables, container, false);
+		initView(view);
+		return view;
+	}
+
+	private void initView(View view) {
+		
+	}
+	
 }

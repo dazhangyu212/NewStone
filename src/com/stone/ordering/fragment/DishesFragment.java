@@ -1,6 +1,12 @@
 package com.stone.ordering.fragment;
 
-import android.support.v4.app.Fragment;
+import com.stone.ordering.R;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * 类名:DishesFragment
@@ -15,6 +21,16 @@ public class DishesFragment extends Fragment {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_dishes, container, false);
+		initView(view);
+		return view;
+	}
+
+	private void initView(View view) {
+		
+	}
 	
 
 }

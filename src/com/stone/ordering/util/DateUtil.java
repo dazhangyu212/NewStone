@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import android.util.Log;
+import java.util.Locale;
 
 /**
  * Date Utility Class This is used to convert Strings to Dates and Timestamps
@@ -56,7 +56,7 @@ public class DateUtil {
 		String returnValue = "1900-01-01";
 
 		if (aDate != null) {
-			df = new SimpleDateFormat(datePattern);
+			df = new SimpleDateFormat(datePattern,Locale.PRC);
 			returnValue = df.format(aDate);
 		}
 
@@ -79,7 +79,7 @@ public class DateUtil {
 	public static final Date convertStringToDate(String aMask, String strDate) throws ParseException {
 		SimpleDateFormat df = null;
 		Date date = null;
-		df = new SimpleDateFormat(aMask);
+		df = new SimpleDateFormat(aMask,Locale.PRC);
 
 		// if (log.isDebugEnabled()) {
 		// log.debug("converting '" + strDate + "' to date with mask '"
@@ -117,7 +117,7 @@ public class DateUtil {
 	 */
 	public static Calendar getToday() throws ParseException {
 		Date today = new Date();
-		SimpleDateFormat df = new SimpleDateFormat(datePattern);
+		SimpleDateFormat df = new SimpleDateFormat(datePattern,Locale.PRC);
 
 		// This seems like quite a hack (date -> string -> date),
 		// but it works ;-)
@@ -147,7 +147,7 @@ public class DateUtil {
 		if (aDate == null) {
 			// log.error("aDate is null!");
 		} else {
-			df = new SimpleDateFormat(aMask);
+			df = new SimpleDateFormat(aMask,Locale.PRC);
 			returnValue = df.format(aDate);
 		}
 		// String value = null;
@@ -404,7 +404,7 @@ public class DateUtil {
 		String returnValue = "1900-01-01";
 
 		if (aDate != null) {
-			df = new SimpleDateFormat(datePattern + " " + timePattern);
+			df = new SimpleDateFormat(datePattern + " " + timePattern,Locale.PRC);
 			returnValue = df.format(aDate);
 		}
 		return (returnValue);

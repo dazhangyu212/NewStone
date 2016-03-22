@@ -1,7 +1,6 @@
 package com.stone.ordering.dao;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.stone.ordering.data.DatabaseHelper;
 
 /**

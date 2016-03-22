@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import com.stone.ordering.app.MyApplication;
 
@@ -38,15 +39,15 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 /**
- * ÀàÃû£ºSysUtilManager ÃèÊö£ºÏµÍ³°ïÖúÀà£¬´æ·ÅÒ»Ğ©Í¨ÓÃ·½·¨¡£ ¹«Ë¾:±±¾©º£öÎ¿Æ½ğ¸ß¿Æ¼¼¹É·İÓĞÏŞ¹«Ë¾ ×÷Õß£ºyuchengkuan
- * °æ±¾£ºV1.0 ´´½¨Ê±¼ä£º2015Äê9ÔÂ10ÈÕ ×îºóĞŞ¸ÄÊ±¼ä£º2015Äê9ÔÂ10ÈÕ
+ * ç±»åï¼šSysUtilManager æè¿°ï¼šç³»ç»Ÿå¸®åŠ©ç±»ï¼Œå­˜æ”¾ä¸€äº›é€šç”¨æ–¹æ³•ã€‚ å…¬å¸:åŒ—äº¬æµ·é‘«ç§‘é‡‘é«˜ç§‘æŠ€è‚¡ä»½æœ‰é™å…¬å¸ ä½œè€…ï¼šyuchengkuan
+ * ç‰ˆæœ¬ï¼šV1.0 åˆ›å»ºæ—¶é—´ï¼š2015å¹´9æœˆ10æ—¥ æœ€åä¿®æ”¹æ—¶é—´ï¼š2015å¹´9æœˆ10æ—¥
  */
 public class SysUtilManager {
 
 	/**
-	 * Ä¬ÈÏÊ±¼ä¸ñÊ½ ÖĞÎÄ yyyyÄêMMÔÂddÈÕ hh:mm
+	 * é»˜è®¤æ—¶é—´æ ¼å¼ ä¸­æ–‡ yyyyå¹´MMæœˆddæ—¥ hh:mm
 	 */
-	public static String defaultFormatStringCN = "yyyyÄêMMÔÂddÈÕHHÊ±mm·Ö";
+	public static String defaultFormatStringCN = "yyyyå¹´MMæœˆddæ—¥HHæ—¶mmåˆ†";
 
 	public static byte[] getBytesFromFile(File file) {
 		if (file == null) {
@@ -72,7 +73,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ½«Ò»¸öbyte[]Ğ´ÈëSDCard£¬³ÉÎªÒ»¸öÍ¼Æ¬ÎÄ¼ş
+	 * å°†ä¸€ä¸ªbyte[]å†™å…¥SDCardï¼Œæˆä¸ºä¸€ä¸ªå›¾ç‰‡æ–‡ä»¶
 	 */
 	public static File writeToSDCardFromInput(String path, byte[] buffer) {
 		File file = null;
@@ -99,7 +100,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°°æ±¾ºÅ
+	 * è·å–å½“å‰ç‰ˆæœ¬å·
 	 */
 	public static String getCurrentAppVersion(Context context) {
 		String versionName = "";
@@ -117,12 +118,12 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ¿½±´ÎÄ¼ş
+	 * æ‹·è´æ–‡ä»¶
 	 * 
 	 * @param sourceFile
-	 *            Ô´ÎÄ¼ş °üÀ¨ÍêÕûÂ·¾¶ºÍÎÄ¼şÃû
+	 *            æºæ–‡ä»¶ åŒ…æ‹¬å®Œæ•´è·¯å¾„å’Œæ–‡ä»¶å
 	 * @param toFile
-	 *            Ä¿±êÎÄ¼ş °üÀ¨ÍêÕûÂ·¾¶ºÍÎÄ¼şÃû
+	 *            ç›®æ ‡æ–‡ä»¶ åŒ…æ‹¬å®Œæ•´è·¯å¾„å’Œæ–‡ä»¶å
 	 */
 	public static void copyFile(String sourceFile, String toFile) {
 		if (sourceFile == null || toFile == null)
@@ -151,7 +152,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ÔÚSDCardÉÏ´´½¨ÎÄ¼ş
+	 * åœ¨SDCardä¸Šåˆ›å»ºæ–‡ä»¶
 	 */
 	public static File createFileInSDCard(String path) {
 		File file = new File(path);
@@ -172,7 +173,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ÔÚSDCardÉÏ´´½¨ÎÄ¼ş¼Ğ
+	 * åœ¨SDCardä¸Šåˆ›å»ºæ–‡ä»¶å¤¹
 	 */
 	public static File createPathInSDCard(String path) {
 		File file = new File(path);
@@ -186,7 +187,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * Òş²Ø¼üÅÌ
+	 * éšè—é”®ç›˜
 	 * 
 	 * @param mcontext
 	 */
@@ -196,14 +197,14 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ÎªÏÖ³¡ÅÄÕÕ»òÕß²É¼¯Ö¸ÎÆËø²úÉúµÄÍ¼Æ¬½øĞĞÃüÃû¡£
+	 * ä¸ºç°åœºæ‹ç…§æˆ–è€…é‡‡é›†æŒ‡çº¹é”äº§ç”Ÿçš„å›¾ç‰‡è¿›è¡Œå‘½åã€‚
 	 * 
 	 * @param idCard
-	 *            Éí·İÖ¤ºÅ
+	 *            èº«ä»½è¯å·
 	 * @param type
-	 *            Ö¸ÎÆÍ¼Æ¬»òÕßÏÖ³¡ÈËÁ³ÕÕÆ¬¡£0±íÊ¾Ö¸ÎÆ£¬1±íÊ¾Ïß³ÌÈËÁ³ÕÕÆ¬
+	 *            æŒ‡çº¹å›¾ç‰‡æˆ–è€…ç°åœºäººè„¸ç…§ç‰‡ã€‚0è¡¨ç¤ºæŒ‡çº¹ï¼Œ1è¡¨ç¤ºçº¿ç¨‹äººè„¸ç…§ç‰‡
 	 * @param fingerIndex
-	 *            Ö¸Î»±àºÅ ¡£Èç¹ûÎªÈËÁ³£¬¸Ã²ÎÊı¿ÉÒÔËæÒâÊäÈë
+	 *            æŒ‡ä½ç¼–å· ã€‚å¦‚æœä¸ºäººè„¸ï¼Œè¯¥å‚æ•°å¯ä»¥éšæ„è¾“å…¥
 	 */
 	public static String createFileName(String idCard, int type, int fingerIndex) {
 		if (idCard == null) {
@@ -240,7 +241,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ¸ù¾İÊÖ»úµÄ·Ö±æÂÊ´Ó dp µÄµ¥Î» ×ª³ÉÎª px(ÏñËØ)
+	 * æ ¹æ®æ‰‹æœºçš„åˆ†è¾¨ç‡ä» dp çš„å•ä½ è½¬æˆä¸º px(åƒç´ )
 	 */
 	public static int dip2px(Context context, float dpValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
@@ -248,7 +249,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ¸ù¾İÊÖ»úµÄ·Ö±æÂÊ´Ó px(ÏñËØ) µÄµ¥Î» ×ª³ÉÎª dp
+	 * æ ¹æ®æ‰‹æœºçš„åˆ†è¾¨ç‡ä» px(åƒç´ ) çš„å•ä½ è½¬æˆä¸º dp
 	 */
 	public static int px2dip(Context context, float pxValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
@@ -256,7 +257,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ¸ù¾İÊÖ»úµÄ·Ö±æÂÊ´Ó px(ÏñËØ) µÄµ¥Î» ×ª³ÉÎª dp
+	 * æ ¹æ®æ‰‹æœºçš„åˆ†è¾¨ç‡ä» px(åƒç´ ) çš„å•ä½ è½¬æˆä¸º dp
 	 */
 	public static float getSystemDensity(Context context) {
 		float scale = context.getResources().getDisplayMetrics().density;
@@ -264,10 +265,10 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ½«bitmap´æÔÚSDCardÖĞ
+	 * å°†bitmapå­˜åœ¨SDCardä¸­
 	 * 
 	 * @param fingerprint_bitmap
-	 * @return ·µ»ØËù´æÂ·¾¶
+	 * @return è¿”å›æ‰€å­˜è·¯å¾„
 	 */
 	public static void saveBitmapToSDCard(Bitmap fingerprint_bitmap, String filePath) {
 		FileOutputStream fos = null;
@@ -286,11 +287,11 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * É¾³ı»º´æµÄÎÄ¼ş
+	 * åˆ é™¤ç¼“å­˜çš„æ–‡ä»¶
 	 * 
 	 * @param path
-	 *            Í¼Æ¬Â·¾¶
-	 * @return ÊÜµ½Ó°ÏìµÄÎÄ¼şÊı
+	 *            å›¾ç‰‡è·¯å¾„
+	 * @return å—åˆ°å½±å“çš„æ–‡ä»¶æ•°
 	 */
 	public static void deleteTmpFile(String path) {
 		if (path == null)
@@ -305,7 +306,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * MD5´óĞ´¼ÓÃÜ
+	 * MD5å¤§å†™åŠ å¯†
 	 */
 	public static String getMD5UpperStr(String str) {
 		MessageDigest messageDigest = null;
@@ -341,22 +342,22 @@ public class SysUtilManager {
 			hexValue.append(Integer.toHexString(val));
 		}
 
-		return hexValue.toString().toUpperCase();
+		return hexValue.toString().toUpperCase(Locale.PRC);
 	}
 
 	/**
-	 * MD5Ğ¡Ğ´¼ÓÃÜ
+	 * MD5å°å†™åŠ å¯†
 	 */
 	public static String getMD5LowerStr(String str) {
-		return getMD5UpperStr(str).toLowerCase();
+		return getMD5UpperStr(str).toLowerCase(Locale.PRC);
 	}
 	
 	/**
-	 * »ñµÃĞòÁĞµÄÏÂÒ»¸öid
+	 * è·å¾—åºåˆ—çš„ä¸‹ä¸€ä¸ªid
 	 * 
-	 * @return Éú³ÉµÄid
+	 * @return ç”Ÿæˆçš„id
 	 * @throws AppBaseException
-	 *             ÒµÎñÒì³£
+	 *             ä¸šåŠ¡å¼‚å¸¸
 	 */
 	public static String getNextId() {
 		return UUIDService.getInstance().simpleHex();
@@ -364,9 +365,9 @@ public class SysUtilManager {
 
 
 	/**
-	 * ½«Éí·İÖ¤ºÅºÍÈËÔ±±àºÅ½øĞĞMD5±àÂëºó×÷ÎªÖ÷¼ü
+	 * å°†èº«ä»½è¯å·å’Œäººå‘˜ç¼–å·è¿›è¡ŒMD5ç¼–ç åä½œä¸ºä¸»é”®
 	 * 
-	 * @return Éú³ÉµÄid
+	 * @return ç”Ÿæˆçš„id
 	 */
 	@SuppressLint("SimpleDateFormat")
 	public static String makeResultIdCardIDToMD5(String idNum, String personId) {
@@ -382,18 +383,18 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * Éè±¸±àºÅ
+	 * è®¾å¤‡ç¼–å·
 	 */
 	public static String getDeviceModel() {
 		String device_model = Build.MODEL;
-		return device_model.toUpperCase();
+		return device_model.toUpperCase(Locale.PRC);
 	}
 
 	/**
-	 * ±£´æ´íÎóĞÅÏ¢µ½ÈÕÖ¾ÎÄ¼şÖĞ
+	 * ä¿å­˜é”™è¯¯ä¿¡æ¯åˆ°æ—¥å¿—æ–‡ä»¶ä¸­
 	 * 
 	 * @param ex
-	 * @return ·µ»ØÎÄ¼şÃû³Æ,±ãÓÚ½«ÎÄ¼ş´«ËÍµ½·şÎñÆ÷
+	 * @return è¿”å›æ–‡ä»¶åç§°,ä¾¿äºå°†æ–‡ä»¶ä¼ é€åˆ°æœåŠ¡å™¨
 	 */
 	public static void saveCrashInfo2File(Throwable ex) {
 
@@ -412,7 +413,7 @@ public class SysUtilManager {
 		sb.append(result);
 		try {
 			long timestamp = System.currentTimeMillis();
-			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss",Locale.PRC);
 			String time = formatter.format(new Date());
 			String fileName = "crash-" + time + "-" + timestamp + ".txt";
 			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -430,32 +431,32 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ·µ»ØÓÉµ±Ç°Ê±¼ä×é³ÉµÄ×Ö·û´®£¬ÓÃÀ´¸øÎÄ¼şÃüÃû
+	 * è¿”å›ç”±å½“å‰æ—¶é—´ç»„æˆçš„å­—ç¬¦ä¸²ï¼Œç”¨æ¥ç»™æ–‡ä»¶å‘½å
 	 */
 	public static String getSystemTimeStringForFileName() {
 		long timestamp = System.currentTimeMillis();
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss",Locale.PRC);
 		String time = formatter.format(new Date());
 		String fileName = time + "-" + timestamp;
 		return fileName;
 	}
 
 	/**
-	 * »ñÈ¡ÏµÍ³µ±Ç°Ê±¼ä
+	 * è·å–ç³»ç»Ÿå½“å‰æ—¶é—´
 	 */
 	public static String getSystemTimeString() {
-		DateFormat df = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("yyy-MM-dd HH:mm:ss",Locale.PRC);
 		return df.format(new Date());
 	}
 
-	/* È¡µÃÏµÍ³ÈÕÆÚ */
+	/* å–å¾—ç³»ç»Ÿæ—¥æœŸ */
 	@SuppressLint("DefaultLocale")
 	public static String getSystemTime() {
 
 		/* get current time for file */
 		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);// month+1µ±Ç°Ê±¼ä
+		int month = calendar.get(Calendar.MONTH);// month+1å½“å‰æ—¶é—´
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
 		int hour = calendar.get(Calendar.HOUR_OF_DAY);
 		int minute = calendar.get(Calendar.MINUTE);
@@ -465,45 +466,45 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * »ñµÃÏµÍ³Ê±¼ä
+	 * è·å¾—ç³»ç»Ÿæ—¶é—´
 	 * 
-	 * @return ÏµÍ³Ê±¼ä
+	 * @return ç³»ç»Ÿæ—¶é—´
 	 */
 	public static Date getSystemDateTime() {
 		return new Date();
 	}
 
 	/**
-	 * ×·¼ÓÊ±¼ä
+	 * è¿½åŠ æ—¶é—´
 	 * 
 	 * @param sourceTime
-	 *            Ô´Ê±¼ä
+	 *            æºæ—¶é—´
 	 * @param timeType
-	 *            Ê±¼äÀàĞÍ 1Äê2ÔÂ3ÈÕ4Ê±5·Ö
+	 *            æ—¶é—´ç±»å‹ 1å¹´2æœˆ3æ—¥4æ—¶5åˆ†
 	 * @param time
-	 *            ×·¼ÓµÄÊ±¼äÖµ
-	 * @return yyyyÄêMMÔÂddÈÕ HH:mm
+	 *            è¿½åŠ çš„æ—¶é—´å€¼
+	 * @return yyyyå¹´MMæœˆddæ—¥ HH:mm
 	 */
 	public static String addTimeType(String sourceTime, int timeType, int time) {
 		String tempString = "";
 		if (!TextUtils.isEmpty(sourceTime)) {
-			SimpleDateFormat sdf = new SimpleDateFormat(defaultFormatStringCN);
+			SimpleDateFormat sdf = new SimpleDateFormat(defaultFormatStringCN,Locale.PRC);
 			try {
 				Date date = sdf.parse(sourceTime);
 				switch (timeType) {
-				case 1:// Äê
+				case 1:// å¹´
 					date.setYear(date.getYear() + time);
 					break;
-				case 2: // ÔÂ
+				case 2: // æœˆ
 					date.setMonth(date.getMonth() + time);
 					break;
-				case 3: // ÈÕ
+				case 3: // æ—¥
 					date.setDate(date.getDate() + time);
 					break;
-				case 4: // Ê±
+				case 4: // æ—¶
 					date.setHours(date.getHours() + time);
 					break;
-				case 5: // ·Ö
+				case 5: // åˆ†
 					date.setMinutes(date.getMinutes() + time);
 					break;
 				default:
@@ -518,9 +519,9 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * »ñµÃÏµÍ³Ê±¼ä £¨yyyyÄêMMÔÂddÈÕ HH:mm£©
+	 * è·å¾—ç³»ç»Ÿæ—¶é—´ ï¼ˆyyyyå¹´MMæœˆddæ—¥ HH:mmï¼‰
 	 * 
-	 * @return ÏµÍ³Ê±¼ä £¨yyyyÄêMMÔÂddÈÕ HH:mm£©
+	 * @return ç³»ç»Ÿæ—¶é—´ ï¼ˆyyyyå¹´MMæœˆddæ—¥ HH:mmï¼‰
 	 */
 	public static String getSystemDateTimeString2() {
 		String datetime = DateUtil.getDateTime(defaultFormatStringCN, getSystemDateTime());
@@ -528,14 +529,14 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ×ª»»Ê±¼ä
+	 * è½¬æ¢æ—¶é—´
 	 * 
 	 * @param sourceTime
-	 *            Ô´Ê±¼ä×Ö·û´® yyyyÄêMMÔÂddÈÕ HH:mm
+	 *            æºæ—¶é—´å­—ç¬¦ä¸² yyyyå¹´MMæœˆddæ—¥ HH:mm
 	 * @return Calendar
 	 */
 	public static Calendar timeStringToCalendar(String sourceTime, String format) {
-		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		SimpleDateFormat sdf = new SimpleDateFormat(format,Locale.PRC);
 		Date date = null;
 		try {
 			date = sdf.parse(sourceTime);
@@ -549,7 +550,7 @@ public class SysUtilManager {
 
 
 	/**
-	 * ĞÔ±ğ¸ñÊ½»¯,°ÑÊı×Ö×ªÎªÎÄ×Ö¡£
+	 * æ€§åˆ«æ ¼å¼åŒ–,æŠŠæ•°å­—è½¬ä¸ºæ–‡å­—ã€‚
 	 */
 	public static String sexFormet(String type) {
 		if (type == null) {
@@ -564,23 +565,23 @@ public class SysUtilManager {
 		String value = null;
 		switch (ct) {
 		case 1:
-			value = "ÄĞ";
+			value = "ç”·";
 			break;
 		case 2:
-			value = "Å®";
+			value = "å¥³";
 			break;
 		default:
-			value = "Å®";
+			value = "å¥³";
 			break;
 		}
 		return value;
 	}
 
 	/**
-	 * É¾³ıÄ¿Â¼ÏÂµÄËùÓĞÎÄ¼ş
+	 * åˆ é™¤ç›®å½•ä¸‹çš„æ‰€æœ‰æ–‡ä»¶
 	 * 
 	 * @param dir
-	 *            ½«ÒªÉ¾³ıµÄÎÄ¼şÄ¿Â¼
+	 *            å°†è¦åˆ é™¤çš„æ–‡ä»¶ç›®å½•
 	 * @return boolean Returns "true" if all deletions were successful. If a
 	 *         deletion fails, the method stops attempting to delete and returns
 	 *         "false".
@@ -599,7 +600,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * ´ò¿ªassetsÎÄ¼ş¼ĞÖĞµÄÎÄ¼ş
+	 * æ‰“å¼€assetsæ–‡ä»¶å¤¹ä¸­çš„æ–‡ä»¶
 	 * 
 	 * @param path
 	 * @param assetManager
@@ -616,7 +617,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * inputstream×ªfile
+	 * inputstreamè½¬file
 	 * 
 	 * @param ins
 	 * @param file
@@ -634,18 +635,18 @@ public class SysUtilManager {
 			os.close();
 		} catch (Exception e) {
 
-			// ±£´æÈÕÖ¾ÎÄ¼ş
+			// ä¿å­˜æ—¥å¿—æ–‡ä»¶
 			saveCrashInfo2File(e);
 		}
 
 	}
 
 	/**
-	 * ±£´æÈÕÖ¾ĞÅÏ¢µ½ÎÄ¼şÖĞ
+	 * ä¿å­˜æ—¥å¿—ä¿¡æ¯åˆ°æ–‡ä»¶ä¸­
 	 * 
 	 * @param ex
-	 *            addToFile true±íÊ¾×·¼Ó false±íÊ¾ÖØĞ´
-	 * @return ·µ»ØÎÄ¼şÃû³Æ,±ãÓÚ½«ÎÄ¼ş´«ËÍµ½·şÎñÆ÷
+	 *            addToFile trueè¡¨ç¤ºè¿½åŠ  falseè¡¨ç¤ºé‡å†™
+	 * @return è¿”å›æ–‡ä»¶åç§°,ä¾¿äºå°†æ–‡ä»¶ä¼ é€åˆ°æœåŠ¡å™¨
 	 */
 	public static void saveLog2File(String conent, boolean addToFile) {
 
@@ -670,7 +671,7 @@ public class SysUtilManager {
 	}
 
 	/**
-	 * »ñÈ¡appµ±Ç°°æ±¾ºÅ
+	 * è·å–appå½“å‰ç‰ˆæœ¬å·
 	 */
 	public static String getAppVersionName() {
 		String versionName = "";

@@ -47,9 +47,10 @@ public class DishesListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
+		ViewGroup root = null;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.listview_item_dishes, null);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.listview_item_dishes, root);
 			holder.iv_dish = (ImageView) convertView.findViewById(R.id.iv_dishes);
 			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_dish_name);
 			holder.tv_price = (TextView) convertView.findViewById(R.id.tv_dish_price);

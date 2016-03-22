@@ -186,8 +186,14 @@ public class DragImageView extends ImageView {
 			}
 			break;
 		}
-
+		performClick();
 		return true;
+	}
+	
+	@Override
+	public boolean performClick() {
+		// TODO Auto-generated method stub
+		return super.performClick();
 	}
 
 	/** 按下 **/

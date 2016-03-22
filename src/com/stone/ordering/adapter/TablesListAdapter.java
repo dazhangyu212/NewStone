@@ -6,7 +6,6 @@ import com.stone.ordering.R;
 import com.stone.ordering.model.DiningTable;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,9 @@ public class TablesListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
+		ViewGroup root = null;
 		if (convertView == null) {
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.listview_item_tables, null);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.listview_item_tables, root);
 			holder = new ViewHolder();
 			holder.iv_table = (ImageView) convertView.findViewById(R.id.iv_table);
 			holder.tv_table_status = (TextView) convertView.findViewById(R.id.tv_table_status);

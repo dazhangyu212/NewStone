@@ -1,12 +1,17 @@
 package com.stone.ordering.fragment;
 
+import java.util.ArrayList;
+
 import com.stone.ordering.R;
+import com.stone.ordering.adapter.TablesListAdapter;
+import com.stone.ordering.model.DiningTable;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 /**
  * 类名:TablesFragment
@@ -16,6 +21,7 @@ import android.view.ViewGroup;
  * 创建时间:2016年3月19日
  */
 public class TablesFragment extends Fragment {
+	private ListView lv_tables;
 
 	public TablesFragment() {
 	}
@@ -28,7 +34,14 @@ public class TablesFragment extends Fragment {
 	}
 
 	private void initView(View view) {
-		
+		lv_tables = (ListView) view.findViewById(R.id.lv_tables);
+		ArrayList<DiningTable> tables = new ArrayList<DiningTable>();
+		for (int i = 0; i < 10; i++) {
+			DiningTable table = new DiningTable();
+			tables.add(table);
+		}
+		TablesListAdapter adapter = new TablesListAdapter(getActivity(),tables);
+		lv_tables.setAdapter(adapter);
 	}
 	
 }

@@ -1,6 +1,5 @@
 package com.stone.ordering.activity;
 
-import com.j256.ormlite.misc.TransactionManager;
 import com.stone.ordering.R;
 import com.stone.ordering.fragment.DishesFragment;
 import com.stone.ordering.fragment.TablesFragment;
@@ -10,8 +9,6 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.FrameLayout;
 
 /**
  * 类名:ChooseDishsActivity

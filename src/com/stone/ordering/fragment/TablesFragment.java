@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.stone.ordering.R;
 import com.stone.ordering.adapter.TablesListAdapter;
+import com.stone.ordering.dao.DiningTableDao;
 import com.stone.ordering.model.DiningTable;
 
 import android.app.Fragment;
@@ -24,21 +25,19 @@ import android.widget.ListView;
  */
 public class TablesFragment extends Fragment {
 	private ListView lv_tables;
+	private DiningTableDao tableDao;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_tables, container, false);
+		tableDao = new DiningTableDao();
 		initView(view);
 		return view;
 	}
 
 	private void initView(View view) {
 		lv_tables = (ListView) view.findViewById(R.id.lv_tables);
-		ArrayList<DiningTable> tables = new ArrayList<DiningTable>();
-		for (int i = 0; i < 10; i++) {
-			DiningTable table = new DiningTable();
-			tables.add(table);
-		}
+		ArrayList<DiningTable> tables = tableDao.queryAll();
 		TablesListAdapter adapter = new TablesListAdapter(getActivity(),tables);
 		lv_tables.setAdapter(adapter);
 		lv_tables.setOnItemClickListener(new OnItemClickListener() {

@@ -1,6 +1,8 @@
 package com.stone.ordering.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.stone.ordering.model.Dish;
@@ -89,6 +91,18 @@ public class DishDao extends BaseDao implements IDao {
 			}
 		}
 		return rows;
+	}
+	
+	public List<Dish> queryAll(){
+		List<Dish> list = new ArrayList<Dish>();
+		try {
+			list = dao.queryForAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+				
 	}
 
 }

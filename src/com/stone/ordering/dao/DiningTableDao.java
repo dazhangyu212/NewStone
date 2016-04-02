@@ -2,6 +2,7 @@ package com.stone.ordering.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.stone.ordering.model.DiningTable;
@@ -113,5 +114,15 @@ public class DiningTableDao extends BaseDao implements IDao{
 		return rows;
 	}
 	
+	public ArrayList<DiningTable> queryAll() {
+		ArrayList<DiningTable> list = new ArrayList<DiningTable>();
+		try {
+			list = (ArrayList<DiningTable>) dao.queryForAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

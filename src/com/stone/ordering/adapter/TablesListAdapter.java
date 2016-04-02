@@ -63,6 +63,8 @@ public class TablesListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.iv_table.setImageResource(R.drawable.table_thumbnail);
+		holder.tv_table_type.setText(mTables.get(position).getRemarks()+mTables.get(position).getTableNum());
+		holder.tv_table_status.setText(mTables.get(position).getStatus()+"");
 		return convertView;
 	}
 	

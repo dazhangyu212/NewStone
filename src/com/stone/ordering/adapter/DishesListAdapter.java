@@ -59,8 +59,9 @@ public class DishesListAdapter extends BaseAdapter {
 		}else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
-		
+		holder.tv_name.setText(mList.get(position).getDishName());
+		holder.tv_price.setText(mList.get(position).getPrice()+"￥");
+		holder.tv_brief.setText(mList.get(position).getRemarks());
 		return convertView;
 	}
 

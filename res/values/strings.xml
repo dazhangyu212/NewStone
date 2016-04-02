@@ -7,5 +7,30 @@
     <string name="str_login">登录</string>
     <string name="str_select_table">选桌</string>
     <string name="str_select_dishs">点菜</string>
-
+    <string-array name="str_dishes">
+        <item >宫保鸡丁</item>
+        <item >鱼香茄子</item>
+        <item >麻婆豆腐</item>
+        <item >鱼香肉丝</item>
+        <item >巫山烤鱼</item>
+        <item >手撕包菜</item>
+        <item >地三鲜</item>
+        <item >酸菜鱼</item>
+        <item >水煮鱼</item>
+        <item >武昌鱼</item>
+        <item >过油肉</item>
+        <item >沙棘苹果</item>
+        <item >香菇油菜</item>
+    </string-array>
+	<string-array name="str_dishtypes">
+	    <item >川菜</item>
+	    <item >鲁菜</item>
+	    <item >粤菜</item>
+	    <item >徽菜</item>
+	    <item >湘菜</item>
+	    <item >浙菜</item>
+	    <item >闽菜</item>
+	    <item >荤菜</item>
+	    <item >素菜</item>
+	</string-array>
 </resources>

@@ -23,11 +23,6 @@ import android.widget.GridView;
 public class DishesFragment extends Fragment {
 	private GridView gv_dishes;
 	
-	
-	public DishesFragment() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_dishes, container, false);

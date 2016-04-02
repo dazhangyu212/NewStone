@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 /**
@@ -22,9 +24,6 @@ import android.widget.ListView;
  */
 public class TablesFragment extends Fragment {
 	private ListView lv_tables;
-
-	public TablesFragment() {
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +41,13 @@ public class TablesFragment extends Fragment {
 		}
 		TablesListAdapter adapter = new TablesListAdapter(getActivity(),tables);
 		lv_tables.setAdapter(adapter);
+		lv_tables.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
+			}
+		});
 	}
 	
 }

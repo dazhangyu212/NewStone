@@ -40,6 +40,22 @@ public class UserDao extends BaseDao implements IDao {
 		}
 		return id;
 	}
+	
+	/**
+	 * 根据用户名查询
+	 * @param uName
+	 * @return
+	 */
+	public User queryByName(String uName){
+		User user = null;
+		try {
+			user = (User) dao.queryBuilder().where().eq("UserName", uName).queryForFirst();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+	}
 
 	@Override
 	public Object queryById(String id) {

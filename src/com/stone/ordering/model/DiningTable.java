@@ -21,7 +21,7 @@ public class DiningTable extends BaseClass {
 		private Status(){};
 		public static final int AVAILIABLE = 0;
 		public static final int ENJOYING = 1;
-		public static final int Cleaning = 2;
+		public static final int CLEANING = 2;
 	};
 	@DatabaseField(columnName = "TableNum")
 	private String tableNum;

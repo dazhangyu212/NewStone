@@ -26,6 +26,7 @@ import android.widget.ListView;
 public class TablesFragment extends Fragment {
 	private ListView lv_tables;
 	private DiningTableDao tableDao;
+	private UpdateInfo mInterface;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,16 +38,23 @@ public class TablesFragment extends Fragment {
 
 	private void initView(View view) {
 		lv_tables = (ListView) view.findViewById(R.id.lv_tables);
-		ArrayList<DiningTable> tables = tableDao.queryAll();
+		final ArrayList<DiningTable> tables = tableDao.queryAll();
 		TablesListAdapter adapter = new TablesListAdapter(getActivity(),tables);
 		lv_tables.setAdapter(adapter);
 		lv_tables.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				
+				mInterface.updateSelectInfo(tables.get(position).getRemarks());
 			}
 		});
 	}
 	
+	public void setInter(UpdateInfo mInterface){
+		this.mInterface = mInterface;
+	}
+	
+	public interface UpdateInfo{
+		public void updateSelectInfo(String str);
+	}
 }

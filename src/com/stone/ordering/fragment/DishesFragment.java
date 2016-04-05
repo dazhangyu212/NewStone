@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 /**
@@ -24,6 +26,7 @@ import android.widget.GridView;
 public class DishesFragment extends Fragment {
 	private GridView gv_dishes;
 	private DishDao dishDao;
+	private UpdateDishInfo mInterface;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +41,20 @@ public class DishesFragment extends Fragment {
 		ArrayList<Dish> dishes = (ArrayList<Dish>) dishDao.queryAll();
 		DishesListAdapter adapter = new DishesListAdapter(getActivity(), dishes);
 		gv_dishes.setAdapter(adapter);
+		gv_dishes.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				mInterface.updateSelectInfo("10");
+			}
+		});
 	}
 	
-
+	public void setInter(UpdateDishInfo mInterface){
+		this.mInterface = mInterface;
+	}
+	
+	public interface UpdateDishInfo{
+		public void updateSelectInfo(String str);
+	}
 }

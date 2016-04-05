@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 		for (int i = 0; i < 10; i++) {
 			DiningTable table = new DiningTable();
 			table.setID(SysUtilManager.getNextId());
-			table.setTableNum(10+"人");
+			table.setTableNum("10");
 			table.setRemarks("A"+(i+1));;
 			table.setStatus(DiningTable.Status.AVAILIABLE);
 			tableDao.insert(table);

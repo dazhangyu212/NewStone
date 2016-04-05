@@ -2,6 +2,8 @@ package com.stone.ordering.adapter;
 
 import java.util.List;
 
+import org.w3c.dom.Text;
+
 import com.stone.ordering.R;
 import com.stone.ordering.model.DiningTable;
 
@@ -56,6 +58,7 @@ public class TablesListAdapter extends BaseAdapter {
 			convertView = LayoutInflater.from(mContext).inflate(R.layout.listview_item_tables, root);
 			holder = new ViewHolder();
 			holder.iv_table = (ImageView) convertView.findViewById(R.id.iv_table);
+			holder.tv_table_name = (TextView) convertView.findViewById(R.id.tv_table_name);
 			holder.tv_table_status = (TextView) convertView.findViewById(R.id.tv_table_status);
 			holder.tv_table_type = (TextView) convertView.findViewById(R.id.tv_table_type);
 			convertView.setTag(holder);
@@ -63,13 +66,27 @@ public class TablesListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.iv_table.setImageResource(R.drawable.table_thumbnail);
-		holder.tv_table_type.setText(mTables.get(position).getRemarks()+mTables.get(position).getTableNum());
-		holder.tv_table_status.setText(mTables.get(position).getStatus()+"");
+		holder.tv_table_name.setText(mTables.get(position).getRemarks());
+		holder.tv_table_type.setText(mTables.get(position).getTableNum()+"人");
+		switch (mTables.get(position).getStatus()) {
+		case DiningTable.Status.AVAILIABLE:
+			holder.tv_table_status.setText(R.string.str_availiable);
+			break;
+		case DiningTable.Status.CLEANING:
+			holder.tv_table_status.setText(R.string.str_cleaning);
+			break;
+		case DiningTable.Status.ENJOYING:
+			holder.tv_table_status.setText(R.string.str_enjoying);
+			break;
+		default:
+			break;
+		}
 		return convertView;
 	}
 	
 	class ViewHolder{
 		ImageView iv_table;
+		TextView tv_table_name;
 		TextView tv_table_type;
 		TextView tv_table_status;
 	}

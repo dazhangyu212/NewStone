@@ -7,6 +7,10 @@
     <string name="str_login">登录</string>
     <string name="str_select_table">选桌</string>
     <string name="str_select_dishs">点菜</string>
+    <string name="str_availiable">空闲中</string>
+    <string name="str_cleaning">清洁中</string>
+    <string name="str_enjoying">享用中</string>
+    <string name="str_selected_info">已选中X号餐桌,已点选Y道餐点</string>
     <string-array name="str_dishes">
         <item >宫保鸡丁</item>
         <item >鱼香茄子</item>

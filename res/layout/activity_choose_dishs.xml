@@ -10,12 +10,31 @@
         layout = "@layout/titlebar"
         />
     <LinearLayout 
+        android:id="@+id/llt_selected_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/title_bar"
+        >
+        <TextView 
+            android:id="@+id/tv_selected_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/n16sp"
+            android:textColor="@color/col_dark_gray"
+            android:text="@string/str_selected_info"
+            />
+    </LinearLayout>
+    <LinearLayout 
         android:id="@+id/llt_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/title_bar"
         android:layout_marginTop="@dimen/n10dp"
+        android:layout_below="@id/llt_selected_info"
         >
 		<Button 
 		    android:id="@+id/btn_select_table"

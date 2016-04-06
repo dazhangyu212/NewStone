@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/col_white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/col_title_black" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/n16dp"
+            android:layout_marginTop="@dimen/n16dp"
+            android:text="title"
+            android:textColor="@color/col_white"
+            android:textSize="@dimen/n24sp" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/n48dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_image_shape"
+            android:contentDescription="关闭"
+            android:visibility="gone"
+            android:src="@drawable/btn_dialog_close_selector" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/col_white"
+        android:gravity="center"
+        android:paddingTop="@dimen/n20dp"
+        android:paddingBottom="@dimen/n20dp"
+        android:paddingLeft="@dimen/n50dp"
+        android:paddingRight="@dimen/n50dp" >
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="填写需要的内容"
+            android:textColor="@color/col_dialog_text"
+            android:textSize="@dimen/n20sp" >
+        </TextView>
+    </LinearLayout>
+
+    <!-- <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/n1dp"
+        android:background="@color/col_divider_gray" 
+        android:visibility="gone"
+        /> -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/col_white"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/n16dp"
+        android:gravity="center">
+		<Button
+            android:id="@+id/btn_confirm"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="@dimen/n115dp"
+            android:layout_height="@dimen/n48dp"
+            android:background="@drawable/btn_bg_selector"
+            android:gravity="center"
+            android:text="@string/str_confirm"
+            android:textColor="@color/col_dialog_text"
+            android:layout_marginLeft="@dimen/n16dp"
+            android:textSize="@dimen/n16sp" />
+        <Button
+            android:id="@+id/btn_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="@dimen/n115dp"
+            android:layout_height="@dimen/n48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_bg_selector"
+            android:gravity="center"
+            android:text="@string/str_cancel"
+            android:textColor="@color/col_red"
+            android:textSize="@dimen/n16sp" 
+            android:layout_marginRight="@dimen/n16dp"
+            />
+        
+    </RelativeLayout>
+
+</LinearLayout>

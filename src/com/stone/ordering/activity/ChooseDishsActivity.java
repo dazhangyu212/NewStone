@@ -24,10 +24,9 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	
 	private TablesFragment tablesFrag ;
 	private DishesFragment dishesFrag;
-	private TextView tvSelectedInfo;
+	private TextView tvSelectedTableInfo;
+	private TextView tvSelectedDishesInfo;
 	
-	private String selectInfo;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,8 +37,8 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	private void initView() {
 		findViewById(R.id.btn_select_dishes).setOnClickListener(this);
 		findViewById(R.id.btn_select_table).setOnClickListener(this);
-		tvSelectedInfo = (TextView) findViewById(R.id.tv_selected_info);
-		selectInfo = getResources().getString(R.string.str_selected_info);
+		tvSelectedTableInfo = (TextView) findViewById(R.id.tv_selected_table_info);
+		tvSelectedDishesInfo = (TextView) findViewById(R.id.tv_selected_dishes_info);
 		setDefaultFragment();
 		
 	}
@@ -52,8 +51,8 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 
 			@Override
 			public void updateSelectInfo(String str) {
-				String txt = tvSelectedInfo.getText().toString();
-				tvSelectedInfo.setText(txt.replace("X", str));
+				String txt = getResources().getString(R.string.str_selected_table_info);
+				tvSelectedTableInfo.setText(txt.replace("X", str));
 			}
 			
 		});
@@ -74,8 +73,8 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 				
 				@Override
 				public void updateSelectInfo(String str) {
-					String txt = tvSelectedInfo.getText().toString();
-					tvSelectedInfo.setText(txt.replace("Y", str));
+					String txt =  ChooseDishsActivity.this.getResources().getString(R.string.str_selected_dishes_info);
+					tvSelectedDishesInfo.setText(txt.replace("Y", str));
 				}
 			});
 			transaction.replace(R.id.flt_fragment, dishesFrag);  
@@ -88,8 +87,8 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 
 				@Override
 				public void updateSelectInfo(String str) {
-					String txt = tvSelectedInfo.getText().toString();
-					tvSelectedInfo.setText(txt.replace("X", str));
+					String txt = ChooseDishsActivity.this.getResources().getString(R.string.str_selected_table_info);
+					tvSelectedTableInfo.setText(txt.replace("X", str));
 				}
 				
 			});

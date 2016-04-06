@@ -16,16 +16,24 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@id/title_bar"
         >
         <TextView 
-            android:id="@+id/tv_selected_info"
+            android:id="@+id/tv_selected_table_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/n16sp"
             android:textColor="@color/col_dark_gray"
-            android:text="@string/str_selected_info"
+            android:text="@string/str_selected_table_info"
+            />
+        <TextView 
+            android:id="@+id/tv_selected_dishes_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/n16sp"
+            android:textColor="@color/col_dark_gray"
+            android:text="@string/str_selected_dishes_info"
             />
     </LinearLayout>
     <LinearLayout 

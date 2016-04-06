@@ -10,7 +10,8 @@
     <string name="str_availiable">空闲中</string>
     <string name="str_cleaning">清洁中</string>
     <string name="str_enjoying">享用中</string>
-    <string name="str_selected_info">已选中X号餐桌,已点选Y道餐点</string>
+    <string name="str_selected_table_info">已选中X号餐桌</string>
+    <string name="str_selected_dishes_info">已点选Y道餐点</string>
     <string-array name="str_dishes">
         <item >宫保鸡丁</item>
         <item >鱼香茄子</item>

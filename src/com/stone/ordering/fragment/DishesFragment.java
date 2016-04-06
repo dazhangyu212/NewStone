@@ -6,6 +6,9 @@ import com.stone.ordering.R;
 import com.stone.ordering.adapter.DishesListAdapter;
 import com.stone.ordering.dao.DishDao;
 import com.stone.ordering.model.Dish;
+import com.stone.ordering.model.OrderDetail;
+import com.stone.ordering.widget.CustomDialog;
+import com.stone.ordering.widget.CustomDialog.ICallback;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -27,6 +30,8 @@ public class DishesFragment extends Fragment {
 	private GridView gv_dishes;
 	private DishDao dishDao;
 	private UpdateDishInfo mInterface;
+	private int count=0;
+	private ArrayList<OrderDetail> listDetail = new ArrayList<OrderDetail>();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,14 +43,34 @@ public class DishesFragment extends Fragment {
 
 	private void initView(View view) {
 		gv_dishes = (GridView) view.findViewById(R.id.gv_dishes);
-		ArrayList<Dish> dishes = (ArrayList<Dish>) dishDao.queryAll();
+		final ArrayList<Dish> dishes = (ArrayList<Dish>) dishDao.queryAll();
 		DishesListAdapter adapter = new DishesListAdapter(getActivity(), dishes);
 		gv_dishes.setAdapter(adapter);
 		gv_dishes.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				mInterface.updateSelectInfo("10");
+			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+				CustomDialog.showDialog(getActivity(), null, null, 
+						new ICallback() {
+					
+					@Override
+					public void onOKButtonClick(String str) {
+						OrderDetail detail = new OrderDetail();
+						detail.setCount(Integer.parseInt(str));
+						detail.setDishID(dishes.get(position).getID());
+						listDetail.add(detail);
+						int amount = 0; 
+						for (int i = 0; i < listDetail.size(); i++) {
+							amount +=listDetail.get(i).getCount();
+							mInterface.updateSelectInfo(amount+"");
+						}
+					}
+					
+					@Override
+					public void onCancelButtonClick() {
+						
+					}
+				});
 			}
 		});
 	}

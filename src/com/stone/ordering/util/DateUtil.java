@@ -31,6 +31,22 @@ public class DateUtil {
 	 */
 	private static String timePattern = "HH:mm:ss";
 
+	private static String[] patterns = {"yyyy-MM-dd","HH:mm:ss","yyyy-MM-dd HH:mm"};
+	
+	public static class Catagory{
+		/**
+		 * yyyy-MM-dd
+		 */
+		public static final int first = 0;
+		/**
+		 * HH:mm:ss
+		 */
+		public static final int second = 1;
+		/**
+		 * yyyy-MM-dd HH:mm
+		 */
+		public static final int third = 2;
+	}
 	// ~ Methods
 	// ================================================================
 
@@ -409,5 +425,16 @@ public class DateUtil {
 		}
 		return (returnValue);
 	}
-
+	
+	/**
+	 * Date 转换为字符串
+//	 * @param index DateFormat的类型
+	 * @return
+	 */
+	public static String formatCurrentDate(int index){
+		SimpleDateFormat format = new SimpleDateFormat(patterns[index], Locale.PRC);
+		String str = format.format(new Date());
+		return str;
+	}
+	
 }

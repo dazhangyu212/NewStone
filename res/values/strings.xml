@@ -10,12 +10,19 @@
     <string name="str_availiable">空闲中</string>
     <string name="str_cleaning">清洁中</string>
     <string name="str_enjoying">享用中</string>
-    <string name="str_selected_table_info">已选中X号餐桌</string>
-    <string name="str_selected_dishes_info">已点选Y道餐点</string>
+    <string name="str_selected_table_info">已选中0号餐桌</string>
+    <string name="str_selected_dishes_info">已点选0道餐点</string>
+    <string name="str_total">共计:￥0.0</string>
     <string name="str_tips">提示</string>
+    <string name="str_no_table">请选择餐桌桌号!</string>
+    <string name="str_no_dishes">请选择餐点!</string>
     <string name="str_make_decision">确定是她了!</string>
     <string name="str_confirm">确定</string>
 	<string name="str_cancel">取消</string>
+	<string name="str_save_success">保存成功</string>
+	<string name="str_save_failure">保存失败</string>
+	<string name="str_update_success">更新成功</string>
+	<string name="str_update_failed">更新失败</string>
     <string-array name="str_dishes">
         <item >宫保鸡丁</item>
         <item >鱼香茄子</item>

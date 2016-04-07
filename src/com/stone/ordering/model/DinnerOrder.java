@@ -17,8 +17,8 @@ public class DinnerOrder extends BaseClass {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static class charge{
-		private charge() {
+	public static class Charge{
+		private Charge() {
 			// TODO Auto-generated constructor stub
 		}
 		public static final int UNPAID = 0; 
@@ -30,7 +30,7 @@ public class DinnerOrder extends BaseClass {
 	@DatabaseField(columnName = "DiningTableID")
 	private String DiningTableID;
 	@DatabaseField(columnName = "Total")
-	private String total;
+	private float total;
 	@DatabaseField(columnName = "Ording")
 	private String orderingTime;
 	@DatabaseField(columnName = "CustomerID")
@@ -64,11 +64,11 @@ public class DinnerOrder extends BaseClass {
 		DiningTableID = diningTableID;
 	}
 
-	public String getTotal() {
+	public float getTotal() {
 		return total;
 	}
 
-	public void setTotal(String total) {
+	public void setTotal(float total) {
 		this.total = total;
 	}
 

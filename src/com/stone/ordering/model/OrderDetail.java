@@ -1,5 +1,6 @@
 package com.stone.ordering.model;
 
+import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
@@ -15,17 +16,19 @@ public class OrderDetail extends BaseClass {
 	public OrderDetail() {
 		// TODO Auto-generated constructor stub
 	}
-	
+	@DatabaseField(columnName = "DishID")
 	private String dishID;
-	
+	@DatabaseField(columnName = "Count")
 	private int count;
-	
+	@DatabaseField(columnName = "OrderID")
+	private String orderID;
+	@DatabaseField(columnName = "Remarks")
 	private String remarks;
-	
+	@DatabaseField(columnName = "Reserved1")
 	private String reserved1;
-
+	@DatabaseField(columnName = "Reserved2")
 	private String reserved2;
-	
+	@DatabaseField(columnName = "Reserved3")
 	private String reserved3;
 
 	public String getDishID() {
@@ -42,6 +45,14 @@ public class OrderDetail extends BaseClass {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 
 	public String getRemarks() {

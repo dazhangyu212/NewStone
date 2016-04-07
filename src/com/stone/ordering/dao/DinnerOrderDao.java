@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import com.j256.ormlite.dao.Dao;
 import com.stone.ordering.model.DinnerOrder;
 import com.stone.ordering.model.IDao;
+import com.stone.ordering.util.SysUtilManager;
 
 /**
  * 类名:DinnerOrderDao
@@ -28,6 +29,7 @@ public class DinnerOrderDao extends BaseDao implements IDao {
 	public String insert(Object obj) {
 		String id = null;
 		DinnerOrder dinnerOrder = (DinnerOrder) obj;
+		dinnerOrder.setID(SysUtilManager.getNextId());
 		try {
 			if (query(dinnerOrder.getID()) != null) {
 				dao.update(dinnerOrder);

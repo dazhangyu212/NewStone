@@ -58,11 +58,15 @@ public class DishesFragment extends Fragment {
 						OrderDetail detail = new OrderDetail();
 						detail.setCount(Integer.parseInt(str));
 						detail.setDishID(dishes.get(position).getID());
+						detail.setRemarks(dishes.get(position).getRemarks());
 						listDetail.add(detail);
-						int amount = 0; 
+						int amount = 0;
+						float total = 0;
 						for (int i = 0; i < listDetail.size(); i++) {
 							amount +=listDetail.get(i).getCount();
+							total += dishes.get(i).getPrice()*listDetail.get(i).getCount();
 							mInterface.updateSelectInfo(amount+"");
+							mInterface.updateTotalInfo(total+"");
 						}
 					}
 					
@@ -81,5 +85,12 @@ public class DishesFragment extends Fragment {
 	
 	public interface UpdateDishInfo{
 		public void updateSelectInfo(String str);
+		
+		public void updateTotalInfo(String total);
+	}
+
+	
+	public ArrayList<OrderDetail> getListDetail() {
+		return listDetail;
 	}
 }

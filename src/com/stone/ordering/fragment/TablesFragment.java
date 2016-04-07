@@ -25,6 +25,7 @@ import android.widget.ListView;
  */
 public class TablesFragment extends Fragment {
 	private ListView lv_tables;
+	private DiningTable currTable;
 	private DiningTableDao tableDao;
 	private UpdateInfo mInterface;
 
@@ -45,7 +46,8 @@ public class TablesFragment extends Fragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				mInterface.updateSelectInfo(tables.get(position).getRemarks());
+				currTable = tables.get(position);
+				mInterface.updateSelectInfo(currTable.getRemarks());
 			}
 		});
 	}
@@ -57,4 +59,10 @@ public class TablesFragment extends Fragment {
 	public interface UpdateInfo{
 		public void updateSelectInfo(String str);
 	}
+
+	public DiningTable getCurrTable() {
+		return currTable;
+	}
+	
+	
 }

@@ -1,17 +1,31 @@
 package com.stone.ordering.activity;
 
+import java.util.ArrayList;
+
 import com.stone.ordering.R;
+import com.stone.ordering.dao.DinnerOrderDao;
+import com.stone.ordering.dao.DishDao;
+import com.stone.ordering.dao.OrderDetailDao;
 import com.stone.ordering.fragment.DishesFragment;
 import com.stone.ordering.fragment.DishesFragment.UpdateDishInfo;
 import com.stone.ordering.fragment.TablesFragment;
 import com.stone.ordering.fragment.TablesFragment.UpdateInfo;
+import com.stone.ordering.model.DiningTable;
+import com.stone.ordering.model.DinnerOrder;
+import com.stone.ordering.model.Dish;
+import com.stone.ordering.model.OrderDetail;
+import com.stone.ordering.util.DateUtil;
+import com.stone.ordering.util.SysUtilManager;
+import com.stone.ordering.widget.CustomDialog;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 类名:ChooseDishsActivity
@@ -24,9 +38,26 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	
 	private TablesFragment tablesFrag ;
 	private DishesFragment dishesFrag;
+	/**
+	 * 桌号
+	 */
 	private TextView tvSelectedTableInfo;
+	/**
+	 * 餐点数
+	 */
 	private TextView tvSelectedDishesInfo;
-	
+	/**
+	 * 总价
+	 */
+	private TextView tvTotal;
+	/**
+	 * 是否为新订单
+	 */
+	private boolean isNewOrder = true;
+	/**
+	 * 当前订单
+	 */
+	private DinnerOrder currOrder = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,8 +68,12 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	private void initView() {
 		findViewById(R.id.btn_select_dishes).setOnClickListener(this);
 		findViewById(R.id.btn_select_table).setOnClickListener(this);
+		findViewById(R.id.ib_comfirm).setOnClickListener(this);
+		ImageButton btn_refresh = (ImageButton) findViewById(R.id.ib_refresh);
+		btn_refresh.setOnClickListener(this);
 		tvSelectedTableInfo = (TextView) findViewById(R.id.tv_selected_table_info);
 		tvSelectedDishesInfo = (TextView) findViewById(R.id.tv_selected_dishes_info);
+		tvTotal = (TextView) findViewById(R.id.tv_total);
 		setDefaultFragment();
 		
 	}
@@ -52,7 +87,7 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 			@Override
 			public void updateSelectInfo(String str) {
 				String txt = getResources().getString(R.string.str_selected_table_info);
-				tvSelectedTableInfo.setText(txt.replace("X", str));
+				tvSelectedTableInfo.setText(txt.replace("0", str));
 			}
 			
 		});
@@ -73,8 +108,15 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 				
 				@Override
 				public void updateSelectInfo(String str) {
-					String txt =  ChooseDishsActivity.this.getResources().getString(R.string.str_selected_dishes_info);
-					tvSelectedDishesInfo.setText(txt.replace("Y", str));
+					String txt = getResources().getString(R.string.str_selected_dishes_info);
+					tvSelectedDishesInfo.setText(txt.replace("0", str));
+				}
+
+				@Override
+				public void updateTotalInfo(String total) {
+					String txt = getResources().getString(R.string.str_total);
+					tvTotal.setText(txt.replace("0.0", total));
+					
 				}
 			});
 			transaction.replace(R.id.flt_fragment, dishesFrag);  
@@ -87,12 +129,25 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 
 				@Override
 				public void updateSelectInfo(String str) {
-					String txt = ChooseDishsActivity.this.getResources().getString(R.string.str_selected_table_info);
-					tvSelectedTableInfo.setText(txt.replace("X", str));
+					String txt = getResources().getString(R.string.str_selected_table_info);
+					tvSelectedTableInfo.setText(txt.replace("0", str));
 				}
 				
 			});
 			transaction.replace(R.id.flt_fragment, tablesFrag);  
+			break;
+		case R.id.ib_comfirm:
+			if (isNewOrder) {
+				saveNewOrder();
+			}else {
+				updateOrder();
+			}
+			break;
+		case R.id.ib_refresh:
+			tvTotal.setText(getResources().getString(R.string.str_total));
+			tvSelectedDishesInfo.setText(getResources().getString(R.string.str_selected_dishes_info));
+			tvSelectedTableInfo.setText(getResources().getString(R.string.str_selected_table_info));
+			isNewOrder = true;
 			break;
 		default:
 			break;
@@ -102,4 +157,88 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
         transaction.commit();  
 	}
 	
+	/**
+	 * 更新当前订单
+	 */
+	private void updateOrder() {
+		if (currOrder != null && checkOrder()) {
+			int i = new DinnerOrderDao().update(currOrder);
+			if (i >0) {
+				Toast.makeText(this, getResources().getString(R.string.str_update_success), Toast.LENGTH_SHORT).show();
+			}else {
+				Toast.makeText(this, getResources().getString(R.string.str_update_failed), Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
+	/**
+	 * 保存订单
+	 */
+	private void saveNewOrder(){
+		currOrder = new DinnerOrder();
+		if(checkOrder()){
+			String id = new DinnerOrderDao().insert(currOrder);
+			if (id != null && !"".equals(id)) {
+				Toast.makeText(this, getResources().getString(R.string.str_save_success), Toast.LENGTH_SHORT).show();
+				isNewOrder = false;
+			}else {
+				Toast.makeText(this, getResources().getString(R.string.str_save_failure), Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+	
+	/**
+	 * 检查订单详情
+	 */
+	private boolean checkOrder(){
+		int count = 0;
+		float total = 0;
+		
+		if (tablesFrag != null) {
+			DiningTable table = tablesFrag.getCurrTable();
+			if (table != null && table.getID() != null && !"".equals(table.getID())) {
+				currOrder.setDiningTableID(table.getID());
+			}else {
+				CustomDialog.showEditDialog(this, 
+						getResources().getString(R.string.str_tips), 
+						getResources().getString(R.string.str_no_table));
+				return false;
+			}
+			currOrder.setCharge(DinnerOrder.Charge.UNPAID);
+			currOrder.setOrderingTime(DateUtil.formatCurrentDate(DateUtil.Catagory.third));
+		}else {
+			CustomDialog.showEditDialog(this, 
+					getResources().getString(R.string.str_tips), 
+					getResources().getString(R.string.str_no_table));
+			return false;
+		}
+		if (dishesFrag != null) {
+			OrderDetailDao dao = new OrderDetailDao();
+			DishDao dishDao = new DishDao();
+			ArrayList<OrderDetail> list = dishesFrag.getListDetail();
+			if (list != null && list.size() > 0) {
+				for (int i = 0; i < list.size(); i++) {
+					OrderDetail detail = list.get(i);
+					detail.setOrderID(currOrder.getID());
+					count +=detail.getCount();
+					Dish dish = (Dish) dishDao.queryById(detail.getDishID());
+					total += dish.getPrice();
+					dao.insert(detail);
+				}
+			}else {
+				CustomDialog.showEditDialog(this, 
+						getResources().getString(R.string.str_tips), 
+						getResources().getString(R.string.str_no_dishes));
+				return false;
+			}
+		}else {
+			CustomDialog.showEditDialog(this, 
+					getResources().getString(R.string.str_tips), 
+					getResources().getString(R.string.str_no_dishes));
+			return false;
+		}
+		currOrder.setCount(count);
+		currOrder.setTotal(total);
+		return true;
+	}
 }

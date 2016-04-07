@@ -34,6 +34,16 @@
             android:textSize="@dimen/n16sp"
             android:textColor="@color/col_dark_gray"
             android:text="@string/str_selected_dishes_info"
+            android:layout_marginTop="@dimen/n10dp"
+            />
+        <TextView 
+            android:id="@+id/tv_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/n16sp"
+            android:textColor="@color/col_dark_gray"
+            android:text="@string/str_total"
+            android:layout_marginTop="@dimen/n10dp"
             />
     </LinearLayout>
     <LinearLayout 

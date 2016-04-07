@@ -1,6 +1,8 @@
 package com.stone.ordering.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.stone.ordering.model.DinnerOrder;
@@ -38,7 +40,6 @@ public class DinnerOrderDao extends BaseDao implements IDao {
 			}
 			id = dinnerOrder.getID();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return id;
@@ -50,7 +51,6 @@ public class DinnerOrderDao extends BaseDao implements IDao {
 		try {
 			order = dao.queryBuilder().where().eq("ID", id).queryForFirst();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return order;
@@ -96,5 +96,34 @@ public class DinnerOrderDao extends BaseDao implements IDao {
 		}
 		return rows;
 	}
-
+	
+	/**
+	 * 查询全部
+	 * @return
+	 */
+	public List<DinnerOrder> queryAll(){
+		List<DinnerOrder> list = new ArrayList<DinnerOrder>();
+		try {
+			list = dao.queryForAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * 按是否付款查询
+	 * @return
+	 */
+	public List<DinnerOrder> queryOrders(int isCharged){
+		List<DinnerOrder> list = new ArrayList<DinnerOrder>();
+		try {
+			list = dao.queryBuilder().where().eq("Charge", isCharged).query();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

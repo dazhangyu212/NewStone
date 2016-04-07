@@ -15,7 +15,6 @@ import com.stone.ordering.model.DinnerOrder;
 import com.stone.ordering.model.Dish;
 import com.stone.ordering.model.OrderDetail;
 import com.stone.ordering.util.DateUtil;
-import com.stone.ordering.util.SysUtilManager;
 import com.stone.ordering.widget.CustomDialog;
 
 import android.app.FragmentManager;
@@ -58,6 +57,15 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	 * 当前订单
 	 */
 	private DinnerOrder currOrder = null;
+	/**
+	 * 没有新订单
+	 */
+	public static final int NO_ORDER = 0;
+	/**
+	 * 有新订单
+	 */
+	public static final int HAS_ORDER = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,6 +77,7 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 		findViewById(R.id.btn_select_dishes).setOnClickListener(this);
 		findViewById(R.id.btn_select_table).setOnClickListener(this);
 		findViewById(R.id.ib_comfirm).setOnClickListener(this);
+		findViewById(R.id.ib_back).setOnClickListener(this);
 		ImageButton btn_refresh = (ImageButton) findViewById(R.id.ib_refresh);
 		btn_refresh.setOnClickListener(this);
 		tvSelectedTableInfo = (TextView) findViewById(R.id.tv_selected_table_info);
@@ -149,6 +158,14 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 			tvSelectedTableInfo.setText(getResources().getString(R.string.str_selected_table_info));
 			isNewOrder = true;
 			break;
+		case R.id.ib_back:
+			if (currOrder.getID()!= null) {
+				this.setResult(HAS_ORDER);
+			}else {
+				this.setResult(NO_ORDER);
+			}
+			this.finish();
+			break;
 		default:
 			break;
 		}
@@ -204,7 +221,6 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 						getResources().getString(R.string.str_no_table));
 				return false;
 			}
-			currOrder.setCharge(DinnerOrder.Charge.UNPAID);
 			currOrder.setOrderingTime(DateUtil.formatCurrentDate(DateUtil.Catagory.third));
 		}else {
 			CustomDialog.showEditDialog(this, 
@@ -239,6 +255,12 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 		}
 		currOrder.setCount(count);
 		currOrder.setTotal(total);
+		currOrder.setCharge(DinnerOrder.Charge.UNPAID);
 		return true;
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 	}
 }

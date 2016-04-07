@@ -24,8 +24,15 @@
         />
 	<RelativeLayout 
 	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/n300dp"
+	    android:layout_height="match_parent"
 	    android:background="@color/col_trans_gray"
+		android:padding="@dimen/n5dp"
 		android:layout_below="@id/gv_operators"
-	    ></RelativeLayout>
+	    >
+	    <ListView 
+	        android:id="@+id/lv_orders"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        />
+	</RelativeLayout>
 </RelativeLayout>

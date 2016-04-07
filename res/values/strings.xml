@@ -23,6 +23,8 @@
 	<string name="str_save_failure">保存失败</string>
 	<string name="str_update_success">更新成功</string>
 	<string name="str_update_failed">更新失败</string>
+	<string name="str_unpaid">未付款</string>
+	<string name="str_charged">已付款</string>
     <string-array name="str_dishes">
         <item >宫保鸡丁</item>
         <item >鱼香茄子</item>

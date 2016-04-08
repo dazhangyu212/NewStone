@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/n16dp"
             android:layout_marginTop="@dimen/n16dp"
-            android:text="title"
+            android:text="@string/str_tips"
             android:textColor="@color/col_white"
             android:textSize="@dimen/n24sp" />
 
@@ -28,7 +28,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/button_image_shape"
-            android:contentDescription="关闭"
+            android:contentDescription="@string/str_close"
             android:visibility="gone"
             android:src="@drawable/btn_dialog_close_selector" />
     </RelativeLayout>

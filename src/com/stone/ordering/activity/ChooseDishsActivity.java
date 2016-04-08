@@ -1,6 +1,5 @@
 package com.stone.ordering.activity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,7 +7,6 @@ import java.util.Map.Entry;
 
 import com.stone.ordering.R;
 import com.stone.ordering.dao.DinnerOrderDao;
-import com.stone.ordering.dao.DishDao;
 import com.stone.ordering.dao.OrderDetailDao;
 import com.stone.ordering.fragment.DishesFragment;
 import com.stone.ordering.fragment.DishesFragment.UpdateDishInfo;
@@ -16,13 +14,13 @@ import com.stone.ordering.fragment.TablesFragment;
 import com.stone.ordering.fragment.TablesFragment.UpdateInfo;
 import com.stone.ordering.model.DiningTable;
 import com.stone.ordering.model.DinnerOrder;
-import com.stone.ordering.model.Dish;
 import com.stone.ordering.model.OrderDetail;
 import com.stone.ordering.util.DateUtil;
 import com.stone.ordering.widget.CustomDialog;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -163,11 +161,7 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 			isNewOrder = true;
 			break;
 		case R.id.ib_back:
-			if (currOrder.getID()!= null) {
-				this.setResult(HAS_ORDER);
-			}else {
-				this.setResult(NO_ORDER);
-			}
+			backToMain();
 			this.finish();
 			break;
 		default:
@@ -272,11 +266,16 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	
 	@Override
 	public void onBackPressed() {
-		if (currOrder.getID()!= null) {
-			this.setResult(HAS_ORDER);
-		}else {
-			this.setResult(NO_ORDER);
-		}
+		backToMain();
 		super.onBackPressed();
+	}
+	
+	private void backToMain(){
+		Intent intent = getIntent();
+		if (currOrder != null && currOrder.getID()!= null) {
+			this.setResult(HAS_ORDER,intent);
+		}else {
+			this.setResult(NO_ORDER,intent);
+		}
 	}
 }

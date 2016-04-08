@@ -7,6 +7,8 @@ import com.stone.ordering.adapter.OperationsAdapter;
 import com.stone.ordering.adapter.OrdersAdapter;
 import com.stone.ordering.dao.DinnerOrderDao;
 import com.stone.ordering.model.DinnerOrder;
+import com.stone.ordering.widget.CustomDialog;
+import com.stone.ordering.widget.CustomDialog.ICallback;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -46,6 +48,31 @@ public class MainActivity extends BaseActivity {
 		orders = orderDao.queryOrders(DinnerOrder.Charge.UNPAID);
 		orderAdapter = new OrdersAdapter(this, orders);
 		lvOrders.setAdapter(orderAdapter);
+		lvOrders.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				final DinnerOrder order = orders.get(position);
+				if (order != null && order.getCharge() == DinnerOrder.Charge.UNPAID) {
+					CustomDialog.showDialog(MainActivity.this, null, 
+							getResources().getString(R.string.str_make_decision), 
+							new ICallback() {
+								
+								@Override
+								public void onOKButtonClick(String str) {
+									Intent intent = new Intent(MainActivity.this, ChargeActivity.class);
+									intent.putExtra("ID", order.getID());
+									startActivityForResult(intent, Activity.RESULT_FIRST_USER);
+								}
+								
+								@Override
+								public void onCancelButtonClick() {
+									
+								}
+							});
+				}
+			}
+		});
 	}
 
 	OnItemClickListener itemListener = new OnItemClickListener() {
@@ -68,7 +95,8 @@ public class MainActivity extends BaseActivity {
 				break;
 			case 4:
 				intent = new Intent(MainActivity.this, ChooseDishsActivity.class);
-				startActivityForResult(intent, Activity.RESULT_OK);
+//				RESULT_OK 会导致onActivityResult不执行
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				break;
 			case 5:
 				orders.clear();

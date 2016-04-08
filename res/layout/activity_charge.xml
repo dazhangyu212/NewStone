@@ -1,8 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-
-</LinearLayout>
+    android:orientation="vertical" 
+    android:background="@drawable/shrimpcup_bg"
+    >
+    <include 
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/titlebar"
+        />
+	<TextView 
+	    android:id="@+id/tv_description"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/str_order_detail"
+	    android:textSize="@dimen/n20sp"
+	    android:textStyle="bold"
+	    android:textColor="@color/col_black"
+	    android:padding="@dimen/n10dp"
+	    android:layout_below="@id/title"
+	    />
+	<LinearLayout 
+	    android:id="@+id/llt_operater"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="@dimen/n10dp"
+	    android:layout_above="@+id/btn_check_out"
+	    android:orientation="horizontal"
+	    >
+	    <TextView 
+	        android:id="@+id/tv_total"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/str_total"
+	        android:textSize="@dimen/n16sp"
+	        android:textColor="@color/col_black"
+	        />
+	    
+	    <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/str_received"
+	        android:textSize="@dimen/n16sp"
+	        android:textColor="@color/col_black"
+	        android:layout_marginLeft="@dimen/n10dp"
+	        />
+	    <EditText 
+	        android:id="@+id/et_received"
+	        android:layout_width="@dimen/n80dp"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/n16sp"
+	        android:textColor="@color/col_black"
+	        android:hint="@string/str_zero"
+	        android:background="@color/col_transparent"
+	        />
+	    <TextView 
+	        android:id="@+id/tv_change"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/n16sp"
+	        android:textColor="@color/col_black"
+	        android:text="@string/str_change"
+	        />
+	</LinearLayout>
+	<Button
+        android:id="@id/btn_check_out" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_paid_over"
+        android:textSize="@dimen/n18sp"
+        android:textColor="@color/col_black"
+        android:background="@drawable/btn_image_shape"
+        android:paddingTop="@dimen/n5dp"
+        android:paddingBottom="@dimen/n5dp"
+        android:paddingLeft="@dimen/n20dp"
+        android:paddingRight="@dimen/n20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/n20dp"
+        android:layout_marginStart="@dimen/n20dp"
+        android:layout_marginBottom="@dimen/n10dp"
+        />
+	<ListView 
+	    android:id="@+id/lv_details"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_below="@id/tv_description"
+	    android:padding="@dimen/n10dp"
+	    android:layout_above="@id/llt_operater"
+	    />
+</RelativeLayout>

@@ -74,7 +74,7 @@ public class CustomDialog {
 	 *            确定键内容
 	 * @param 按键响应回调
 	 */
-	public static void showDialog(final Activity activity, String title, String data, String OKText, String CancelText,
+	public static void showDialog(final Activity activity, String title, String data, 
 			final ICallback callback) {
 		ViewGroup root = null;
 		final Dialog dialog = new Dialog(activity);
@@ -84,7 +84,9 @@ public class CustomDialog {
 		dialog.show();
 		TextView titleView = (TextView) view.findViewById(R.id.title);
 		TextView dataView = (TextView) view.findViewById(R.id.data);
-		titleView.setText(title);
+		if (title != null) {
+			titleView.setText(title);
+		}
 		dataView.setText(data);
 		OnClickListener onClickListener = new OnClickListener() {
 
@@ -107,10 +109,8 @@ public class CustomDialog {
 			}
 		};
 		Button btnConfirm = (Button) view.findViewById(R.id.btn_confirm);
-		btnConfirm.setText(OKText);
 		btnConfirm.setOnClickListener(onClickListener);
 		Button btncancel = (Button) view.findViewById(R.id.btn_cancel);
-		btncancel.setText(CancelText);
 		btncancel.setOnClickListener(onClickListener);
 		view.findViewById(R.id.iv_close).setOnClickListener(onClickListener);
 	}

@@ -1,6 +1,10 @@
 package com.stone.ordering.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.stone.ordering.R;
 import com.stone.ordering.dao.DinnerOrderDao;
@@ -230,15 +234,17 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 		}
 		if (dishesFrag != null) {
 			OrderDetailDao dao = new OrderDetailDao();
-			DishDao dishDao = new DishDao();
-			ArrayList<OrderDetail> list = dishesFrag.getListDetail();
-			if (list != null && list.size() > 0) {
-				for (int i = 0; i < list.size(); i++) {
-					OrderDetail detail = list.get(i);
+			HashMap<String, OrderDetail> ordersMap = dishesFrag.getOrderMap();
+			Iterator<Map.Entry<String, OrderDetail>> iter = ordersMap.entrySet().iterator();
+			
+			if (ordersMap != null && ordersMap.size() > 0) {
+				while (iter.hasNext()) {
+					Entry<String, OrderDetail> entry = iter.next();
+					OrderDetail detail = entry.getValue();
 					detail.setOrderID(currOrder.getID());
 					count +=detail.getCount();
-					Dish dish = (Dish) dishDao.queryById(detail.getDishID());
-					total += dish.getPrice();
+					Float price = Float.parseFloat(detail.getReserved1());
+					total += price*detail.getCount();
 					dao.insert(detail);
 				}
 			}else {
@@ -262,5 +268,15 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if (currOrder.getID()!= null) {
+			this.setResult(HAS_ORDER);
+		}else {
+			this.setResult(NO_ORDER);
+		}
+		super.onBackPressed();
 	}
 }

@@ -1,6 +1,9 @@
 package com.stone.ordering.fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import com.stone.ordering.R;
 import com.stone.ordering.adapter.DishesListAdapter;
@@ -30,8 +33,7 @@ public class DishesFragment extends Fragment {
 	private GridView gv_dishes;
 	private DishDao dishDao;
 	private UpdateDishInfo mInterface;
-	private int count=0;
-	private ArrayList<OrderDetail> listDetail = new ArrayList<OrderDetail>();
+	private HashMap<String, OrderDetail> orderMap = new HashMap<String, OrderDetail>();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,23 +52,47 @@ public class DishesFragment extends Fragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-				CustomDialog.showDialog(getActivity(), null, null, 
+				int count = 0;
+				if (orderMap.containsKey(dishes.get(position).getID())) {
+					count += orderMap.get(dishes.get(position).getID()).getCount();
+				}
+				CustomDialog.showDialog(getActivity(), null, null, count,
 						new ICallback() {
 					
 					@Override
 					public void onOKButtonClick(String str) {
-						OrderDetail detail = new OrderDetail();
-						detail.setCount(Integer.parseInt(str));
-						detail.setDishID(dishes.get(position).getID());
-						detail.setRemarks(dishes.get(position).getRemarks());
-						listDetail.add(detail);
-						int amount = 0;
-						float total = 0;
-						for (int i = 0; i < listDetail.size(); i++) {
-							amount +=listDetail.get(i).getCount();
-							total += dishes.get(i).getPrice()*listDetail.get(i).getCount();
-							mInterface.updateSelectInfo(amount+"");
-							mInterface.updateTotalInfo(total+"");
+						int nowCount = Integer.parseInt(str);
+						Dish dish = dishes.get(position);
+						if (nowCount > 0) {
+							OrderDetail detail = null;
+							if (orderMap.containsKey(dish.getID())) {
+								detail = orderMap.get(dish.getID());
+								detail.setCount(nowCount);
+							}else {
+								detail = new OrderDetail();
+								detail.setCount(nowCount);
+								detail.setDishID(dish.getID());
+								detail.setRemarks(dish.getRemarks());
+								detail.setReserved1(dish.getPrice()+"");
+								orderMap.put(detail.getDishID(), detail);
+							}
+							int amount = 0;
+							float total = 0;
+							Iterator<Map.Entry<String, OrderDetail>> iter = orderMap.entrySet().iterator();
+							while (iter.hasNext()) {
+								Map.Entry<String, OrderDetail> entry = (Map.Entry<String, OrderDetail>) iter.next();
+								OrderDetail val = entry.getValue();
+								amount += val.getCount();
+								total += Float.parseFloat(val.getReserved1())*val.getCount();
+								mInterface.updateSelectInfo(amount+"");
+								mInterface.updateTotalInfo(total+"");
+							}
+						}else {
+							if (orderMap.containsKey(dish.getID())) {
+								orderMap.remove(dish.getID());
+								mInterface.updateSelectInfo("0");
+								mInterface.updateTotalInfo("0.0");
+							}
 						}
 					}
 					
@@ -89,8 +115,8 @@ public class DishesFragment extends Fragment {
 		public void updateTotalInfo(String total);
 	}
 
-	
-	public ArrayList<OrderDetail> getListDetail() {
-		return listDetail;
+	public HashMap<String, OrderDetail> getOrderMap() {
+		return orderMap;
 	}
+	
 }

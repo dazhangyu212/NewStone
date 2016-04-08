@@ -127,7 +127,8 @@ public class CustomDialog {
 	 *            确定键内容
 	 * @param 按键响应回调
 	 */
-	public static void showDialog(final Activity activity, String title, String data, 
+	public static void showDialog(final Activity activity, String title, String data,
+			int count,
 			final ICallback callback) {
 		ViewGroup root = null;
 		final Dialog dialog = new Dialog(activity);
@@ -144,6 +145,9 @@ public class CustomDialog {
 			dataView.setText(data);
 		}
 		final EditText tvCount = (EditText) view.findViewById(R.id.et_count);
+		if (count>0) {
+			tvCount.setText(count+"");
+		}
 		ImageView ivPlus = (ImageView) view.findViewById(R.id.btn_plus);
 		ImageView ivMinus = (ImageView) view.findViewById(R.id.btn_minus);
 		OnClickListener onClickListener = new OnClickListener() {

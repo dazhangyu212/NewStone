@@ -66,7 +66,7 @@
             android:id="@id/et_count"
             android:layout_width="@dimen/n60dp"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="@string/str_zero"
             android:inputType="number"
             android:textColor="@color/col_dialog_text"
             android:layout_centerInParent="true"

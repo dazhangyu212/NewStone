@@ -16,6 +16,7 @@ import com.stone.ordering.model.DiningTable;
 import com.stone.ordering.model.DinnerOrder;
 import com.stone.ordering.model.OrderDetail;
 import com.stone.ordering.util.DateUtil;
+import com.stone.ordering.util.SysUtilManager;
 import com.stone.ordering.widget.CustomDialog;
 
 import android.app.FragmentManager;
@@ -192,9 +193,10 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	private void saveNewOrder(){
 		currOrder = new DinnerOrder();
 		if(checkOrder()){
-			String id = new DinnerOrderDao().insert(currOrder);
+			String id = new DinnerOrderDao().insert(currOrder,currOrder.getID());
 			if (id != null && !"".equals(id)) {
 				Toast.makeText(this, getResources().getString(R.string.str_save_success), Toast.LENGTH_SHORT).show();
+//				dishesFrag.saveOrderDetail(id);
 				isNewOrder = false;
 			}else {
 				Toast.makeText(this, getResources().getString(R.string.str_save_failure), Toast.LENGTH_SHORT).show();
@@ -208,7 +210,8 @@ public class ChooseDishsActivity extends BaseActivity implements OnClickListener
 	private boolean checkOrder(){
 		int count = 0;
 		float total = 0;
-		
+		String orderId = SysUtilManager.getNextId();
+		currOrder.setID(orderId);
 		if (tablesFrag != null) {
 			DiningTable table = tablesFrag.getCurrTable();
 			if (table != null && table.getID() != null && !"".equals(table.getID())) {

@@ -3,9 +3,7 @@ package com.stone.ordering.adapter;
 import java.util.List;
 
 import com.stone.ordering.R;
-import com.stone.ordering.adapter.DishesListAdapter.ViewHolder;
 import com.stone.ordering.dao.DiningTableDao;
-import com.stone.ordering.dao.OrderDetailDao;
 import com.stone.ordering.model.DiningTable;
 import com.stone.ordering.model.DinnerOrder;
 
@@ -14,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 /**
  * 类名:OrdersAdapter
@@ -27,13 +24,11 @@ public class OrdersAdapter extends BaseAdapter {
 	private List<DinnerOrder> mOrders;
 	private Context mContext;
 	private DiningTableDao tableDao;
-	private OrderDetailDao detailDao;
 	
 	public OrdersAdapter(Context context,List<DinnerOrder> orders) {
 		this.mContext = context;
 		this.mOrders = orders;
 		tableDao = new DiningTableDao();
-		detailDao = new OrderDetailDao();
 	}
 
 	@Override

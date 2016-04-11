@@ -45,6 +45,22 @@ public class DinnerOrderDao extends BaseDao implements IDao {
 		return id;
 	}
 
+	public String insert(DinnerOrder order,String id){
+		if (id != null && !"".equals(order)) {
+			try {
+				if (query(id) != null) {
+					dao.update(order);
+				} else {
+					dao.createIfNotExists(order);
+				}
+				id = order.getID();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return id;
+	}
+	
 	@Override
 	public Object queryById(String id) {
 		DinnerOrder order = null;

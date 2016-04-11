@@ -2,8 +2,6 @@ package com.stone.ordering.adapter;
 
 import java.util.List;
 
-import org.w3c.dom.Text;
-
 import com.stone.ordering.R;
 import com.stone.ordering.model.DiningTable;
 

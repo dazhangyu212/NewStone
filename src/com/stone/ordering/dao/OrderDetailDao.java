@@ -1,6 +1,8 @@
 package com.stone.ordering.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.stone.ordering.model.OrderDetail;
@@ -91,4 +93,22 @@ public class OrderDetailDao extends BaseDao implements IDao {
 		return rows;
 	}
 
+	/**
+	 * 根据订单号查询该订单的所有详情
+	 * @param orderID
+	 * @return
+	 */
+	public List<OrderDetail> queryByOrderID(String orderID){
+		List<OrderDetail> list = new ArrayList<>();
+			try {
+				list = dao.queryBuilder().where().eq("OrderID", orderID).query();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return list;
+		
+	}
+	
 }

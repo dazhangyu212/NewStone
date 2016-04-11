@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.stone.ordering.R;
 import com.stone.ordering.adapter.DishesListAdapter;
 import com.stone.ordering.dao.DishDao;
+import com.stone.ordering.dao.OrderDetailDao;
+import com.stone.ordering.model.DinnerOrder;
 import com.stone.ordering.model.Dish;
 import com.stone.ordering.model.OrderDetail;
 import com.stone.ordering.widget.CustomDialog;
@@ -117,6 +120,17 @@ public class DishesFragment extends Fragment {
 
 	public HashMap<String, OrderDetail> getOrderMap() {
 		return orderMap;
+	}
+	
+	public void saveOrderDetail(String orderID){
+		Iterator<Map.Entry<String, OrderDetail>> iter = orderMap.entrySet().iterator();
+		OrderDetailDao dao = new OrderDetailDao();
+		while (iter.hasNext()) {
+			Entry<String, OrderDetail> entry = iter.next();
+			OrderDetail detail = entry.getValue();
+			detail.setOrderID(orderID);
+			dao.insert(detail);
+		}
 	}
 	
 }

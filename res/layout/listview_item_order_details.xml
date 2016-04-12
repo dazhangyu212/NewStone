@@ -14,8 +14,8 @@
 
         />
     <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
 		android:padding="@dimen/n10dp"
         >
@@ -34,8 +34,20 @@
             android:text="@string/str_price"
             android:textSize="@dimen/n18sp"
             android:textColor="@color/col_dark_gray"
+            android:layout_marginTop="@dimen/n10dp"
             />
-        <TextView 
+    </LinearLayout>
+    <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textSize="@dimen/n20sp"
+            android:textColor="@color/col_dark_gray"
+			android:ellipsize="end"  
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="@dimen/n10dp"
+            />
+	<TextView 
             android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +56,7 @@
             android:textColor="@color/col_dark_gray"
 			android:maxLines="2"
 			android:ellipsize="end"  
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="@dimen/n10dp"
             />
-    </LinearLayout>
-	
 </LinearLayout>

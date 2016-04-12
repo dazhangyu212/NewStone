@@ -69,6 +69,7 @@
 	        android:textColor="@color/col_black"
 	        android:hint="@string/str_zero"
 	        android:background="@color/col_transparent"
+	        android:inputType="number"
 	        />
 	    <TextView 
 	        android:id="@+id/tv_change"

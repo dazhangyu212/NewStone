@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends BaseActivity implements OnClickListener{
 	private EditText etUsername;
@@ -50,9 +51,29 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_login:
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
-			finish();
+			String name = etUsername.getText().toString();
+			String pw = etPassword.getText().toString();
+			if ("".equals(name)) {
+				Toast.makeText(this, R.string.str_name_null, Toast.LENGTH_LONG).show();
+				return;
+			}
+			if ("".equals(pw)) {
+				Toast.makeText(this, R.string.str_pw_null, Toast.LENGTH_LONG).show();
+				return;
+			}
+			User user = udao.queryByName(name);
+			if (user != null) {
+				if (pw.equals(user.getPassWord())) {
+					Intent intent = new Intent(this, MainActivity.class);
+					startActivity(intent);
+					finish();
+				}else {
+					Toast.makeText(this, R.string.str_pw_unmatch, Toast.LENGTH_LONG).show();
+				}
+			}else {
+				Toast.makeText(this, R.string.str_no_user, Toast.LENGTH_LONG).show();
+			}
+			
 			break;
 		default:
 			break;

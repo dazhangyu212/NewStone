@@ -10,8 +10,12 @@ import com.stone.ordering.dao.OrderDetailDao;
 import com.stone.ordering.model.DiningTable;
 import com.stone.ordering.model.DinnerOrder;
 import com.stone.ordering.model.OrderDetail;
+import com.stone.ordering.widget.CustomDialog;
+import com.stone.ordering.widget.CustomDialog.ICallback;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -45,9 +49,10 @@ public class ChargeActivity extends BaseActivity {
 
 	private void initView() {
 		String orderId = getIntent().getStringExtra("ID");
-		DinnerOrder order = (DinnerOrder) new DinnerOrderDao().queryById(orderId);
+		final DinnerOrderDao dao = new DinnerOrderDao();
+		final DinnerOrder order = (DinnerOrder) dao.queryById(orderId);
 		List<OrderDetail> list = new OrderDetailDao().queryByOrderID(orderId);
-				
+		findViewById(R.id.ib_comfirm).setVisibility(View.GONE);		
 		lvDetails = (ListView) findViewById(R.id.lv_details);
 		OrderDetailAdapter adapter = new OrderDetailAdapter(this, list);
 		lvDetails.setAdapter(adapter);
@@ -63,7 +68,51 @@ public class ChargeActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(View v) {
-				ChargeActivity.this.setResult(23);
+				order.setCharge(DinnerOrder.Charge.CHARGED);
+				int i = dao.update(order);
+				if (i > 0) {
+					CustomDialog.showDialog(ChargeActivity.this, null, 
+							getString(R.string.str_charge_over), 
+							new ICallback() {
+								
+								@Override
+								public void onOKButtonClick(String str) {
+									ChargeActivity.this.setResult(23);
+									ChargeActivity.this.finish();
+								}
+								
+								@Override
+								public void onCancelButtonClick() {
+									
+								}
+							});
+				}
+			}
+		});
+		etReceived.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s != null && !"".equals(s.toString())) {
+					float cash = Float.parseFloat(s.toString());
+					if (cash > order.getTotal()) {
+						float change = cash - order.getTotal();
+						tvChange.setText(getString(R.string.str_change).replace("0.0", change+""));
+					}else {
+						tvChange.setText(getString(R.string.str_change));
+					}
+				}
 			}
 		});
 		

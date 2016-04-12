@@ -23,6 +23,7 @@
     <string name="str_no_dishes">请选择餐点!</string>
     <string name="str_make_decision">确定是她了!</string>
     <string name="str_will_paid">需要结账!</string>
+    <string name="str_charge_over">结账成功,是否退出!</string>
     <string name="str_confirm">确定</string>
 	<string name="str_cancel">取消</string>
 	<string name="str_close">关闭</string>
@@ -61,4 +62,10 @@
 	    <item >荤菜</item>
 	    <item >素菜</item>
 	</string-array>
+	
+	<string name="str_no_user">用户名不存在!</string>
+	<string name="str_pw_unmatch">用户名密码不匹配!</string>
+	<string name="str_success">登录成功!</string>
+	<string name="str_pw_null">密码不能为空!</string>
+	<string name="str_name_null">用户名不能为空!</string>
 </resources>

@@ -44,6 +44,9 @@ public class MainActivity extends BaseActivity {
 		gvOperations.setAdapter(adapter);
 		gvOperations.setOnItemClickListener(itemListener);
 		
+		findViewById(R.id.ib_comfirm).setVisibility(View.GONE);
+		findViewById(R.id.ib_back).setVisibility(View.GONE);
+		
 		ListView lvOrders = (ListView) findViewById(R.id.lv_orders);
 		orders = orderDao.queryOrders(DinnerOrder.Charge.UNPAID);
 		orderAdapter = new OrdersAdapter(this, orders);
@@ -151,6 +154,11 @@ public class MainActivity extends BaseActivity {
 			break;
 		case ChooseDishsActivity.NO_ORDER:
 			
+			break;
+		case 23:
+			orders.clear();
+			orders.addAll(orderDao.queryOrders(DinnerOrder.Charge.UNPAID));
+			orderAdapter.notifyDataSetChanged();
 			break;
 		default:
 			break;

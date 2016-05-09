@@ -31,6 +31,10 @@ public class Constants {
 	 */
 	public static final String DATA_PATH = PRO_PATH + "dbs/";
 	/**
+	 * 数据库路径
+	 */
+	public static final String DISHES_PATH = PRO_PATH + "dishes/";
+	/**
 	 * 现场采集和比对结果数据库
 	 */
 	public static final String COLLECT_DB_PATH = DATA_PATH + "main.db";

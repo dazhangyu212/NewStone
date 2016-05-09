@@ -79,22 +79,12 @@ public class DishesFragment extends Fragment {
 								detail.setReserved1(dish.getPrice()+"");
 								orderMap.put(detail.getDishID(), detail);
 							}
-							int amount = 0;
-							float total = 0;
-							Iterator<Map.Entry<String, OrderDetail>> iter = orderMap.entrySet().iterator();
-							while (iter.hasNext()) {
-								Map.Entry<String, OrderDetail> entry = (Map.Entry<String, OrderDetail>) iter.next();
-								OrderDetail val = entry.getValue();
-								amount += val.getCount();
-								total += Float.parseFloat(val.getReserved1())*val.getCount();
-								mInterface.updateSelectInfo(amount+"");
-								mInterface.updateTotalInfo(total+"");
-							}
+							updateDesk();
+							
 						}else {
 							if (orderMap.containsKey(dish.getID())) {
 								orderMap.remove(dish.getID());
-								mInterface.updateSelectInfo("0");
-								mInterface.updateTotalInfo("0.0");
+								updateDesk();
 							}
 						}
 					}
@@ -108,13 +98,37 @@ public class DishesFragment extends Fragment {
 		});
 	}
 	
+	/**
+	 * 更新界面上的总数和总价信息
+	 */
+	private void  updateDesk(){
+		int amount = 0;
+		float total = 0;
+		Iterator<Map.Entry<String, OrderDetail>> iter = orderMap.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<String, OrderDetail> entry = (Map.Entry<String, OrderDetail>) iter.next();
+			OrderDetail val = entry.getValue();
+			amount += val.getCount();
+			total += Float.parseFloat(val.getReserved1())*val.getCount();
+			mInterface.updateSelectInfo(amount+"");
+			mInterface.updateTotalInfo(total+"");
+		}
+	}
+	
 	public void setInter(UpdateDishInfo mInterface){
 		this.mInterface = mInterface;
 	}
 	
 	public interface UpdateDishInfo{
+		/**
+		 * 更新选到的餐点信息
+		 * @param str
+		 */
 		public void updateSelectInfo(String str);
-		
+		/**
+		 * 更新总价信息
+		 * @param total
+		 */
 		public void updateTotalInfo(String total);
 	}
 

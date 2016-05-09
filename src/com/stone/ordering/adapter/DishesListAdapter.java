@@ -2,10 +2,14 @@ package com.stone.ordering.adapter;
 
 import java.util.ArrayList;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
 import com.stone.ordering.R;
 import com.stone.ordering.model.Dish;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +63,13 @@ public class DishesListAdapter extends BaseAdapter {
 		}else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				.showImageOnLoading(R.drawable.img_loading)
+				.showImageOnFail(R.drawable.img_loaded_failure)
+				.cacheInMemory(false)
+				.cacheOnDisk(false)
+				.bitmapConfig(Bitmap.Config.RGB_565).build();
+		ImageLoader.getInstance().displayImage(Scheme.FILE.wrap(mList.get(position).getPicPath()), holder.iv_dish, options);
 		holder.tv_name.setText(mList.get(position).getDishName());
 		holder.tv_price.setText(mList.get(position).getPrice()+"￥");
 		holder.tv_brief.setText(mList.get(position).getRemarks());

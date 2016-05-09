@@ -85,16 +85,20 @@ public class MainActivity extends BaseActivity {
 			Intent intent;
 			switch (position) {
 			case 0:
-				
+				intent = new Intent(MainActivity.this, SettingActivity.class);
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				break;
 			case 1:
-				
+				intent = new Intent(MainActivity.this, SettingActivity.class);
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				break;
 			case 2:
-				
+				intent = new Intent(MainActivity.this, SettingActivity.class);
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				break;
 			case 3:
-				
+				intent = new Intent(MainActivity.this, SettingActivity.class);
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				break;
 			case 4:
 				intent = new Intent(MainActivity.this, ChooseDishsActivity.class);
@@ -107,10 +111,11 @@ public class MainActivity extends BaseActivity {
 				orderAdapter.notifyDataSetChanged();
 				break;
 			case 6:
-				
+				intent = new Intent(MainActivity.this, SettingActivity.class);
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				break;
 			case 7:
-				
+				Toast.makeText(MainActivity.this, R.string.str_logout, Toast.LENGTH_SHORT).show();
 				break;
 			default:
 				break;

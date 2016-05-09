@@ -2,13 +2,16 @@ package com.stone.ordering.adapter;
 
 import java.util.List;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
 import com.stone.ordering.R;
-import com.stone.ordering.dao.DiningTableDao;
 import com.stone.ordering.dao.DishDao;
 import com.stone.ordering.model.Dish;
 import com.stone.ordering.model.OrderDetail;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +59,7 @@ public class OrderDetailAdapter extends BaseAdapter {
 			holder.tvDishName = (TextView) convertView.findViewById(R.id.tv_dish_name);
 			holder.tvPrice = (TextView) convertView.findViewById(R.id.tv_price);
 			holder.tvCount = (TextView) convertView.findViewById(R.id.tv_count);
-			holder.ivDish = (ImageView) convertView.findViewById(R.id.iv_dishes);
+			holder.ivDish = (ImageView) convertView.findViewById(R.id.tv_dish_Pic);
 			convertView.setTag(holder);
 		}else {
 			holder = (ViewHolder) convertView.getTag();
@@ -66,6 +69,13 @@ public class OrderDetailAdapter extends BaseAdapter {
 		Dish dish = (Dish) new DishDao().queryById(detail.getDishID());
 		holder.tvDishName.setText(dish.getDishName());
 		holder.tvPrice.setText(mContext.getResources().getString(R.string.str_price).replace("0.0", dish.getPrice()+""));
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				.showImageOnLoading(R.drawable.img_loading)
+				.showImageOnFail(R.drawable.img_loaded_failure)
+				.cacheInMemory(false)
+				.cacheOnDisk(false)
+				.bitmapConfig(Bitmap.Config.RGB_565).build();
+		ImageLoader.getInstance().displayImage(Scheme.FILE.wrap(dish.getPicPath()), holder.ivDish, options);
 		return convertView;
 	}
 	

@@ -80,6 +80,10 @@ public class MyApplication extends Application {
 		if (!temp.exists()) {
 			temp.mkdirs();
 		}
+		File dishes = new File(Constants.DISHES_PATH);
+		if (!dishes.exists()) {
+			dishes.mkdirs();
+		}
 
 	}
 
